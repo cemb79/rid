@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,15 +16,19 @@ import javax.persistence.Table;
 public class DeliveryOrder {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer regDO;
-	private String codSucursal;
+	@ManyToOne
+	@JoinColumn(name = "CodSucursal")
+	private Office office;
 	private String noDO;
 	private Date fechaRegistro;
 	private String tipoOperacion;
 	private String codEstadoDO;
 	private String usuarioID;
-	private String codCliente;
+	//@ManyToOne
+	//@JoinColumn(name = "codCliente")
+	//private Customer customer;
 	private String codModalidadDO;
 	private Date fecVenModTemp;
 	private String codTipoDeclaracion;
@@ -50,11 +56,11 @@ public class DeliveryOrder {
 	public void setRegDO(Integer regDO) {
 		this.regDO = regDO;
 	}
-	public String getCodSucursal() {
-		return codSucursal;
+	public Office getOffice() {
+		return office;
 	}
-	public void setCodSucursal(String codSucursal) {
-		this.codSucursal = codSucursal;
+	public void setOffice(Office office) {
+		this.office = office;
 	}
 	public String getNoDO() {
 		return noDO;
@@ -85,12 +91,6 @@ public class DeliveryOrder {
 	}
 	public void setUsuarioID(String usuarioID) {
 		this.usuarioID = usuarioID;
-	}
-	public String getCodCliente() {
-		return codCliente;
-	}
-	public void setCodCliente(String codCliente) {
-		this.codCliente = codCliente;
 	}
 	public String getCodModalidadDO() {
 		return codModalidadDO;
@@ -212,6 +212,12 @@ public class DeliveryOrder {
 	public void setDateStamp(Date dateStamp) {
 		this.dateStamp = dateStamp;
 	}
+	/*public Customer getCustomer() {
+		return customer;
+	}
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}*/
 	
 	@Override
 	public int hashCode() {

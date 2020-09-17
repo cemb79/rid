@@ -1,9 +1,9 @@
 package com.acolcex.rid.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.acolcex.rid.model.DeliveryOrder;
 
-public interface DeliveryOrderRepository extends CrudRepository<DeliveryOrder, Long> {
+public interface DeliveryOrderRepository extends JpaRepository<DeliveryOrder, Integer> {
 
 }

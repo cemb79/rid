@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="col-md-10" v-if="user.userRole !== 'ANE'">
-            <h1>Dashboard</h1>
+            <h1>DOs Asignados</h1>
             <hr>       
         </div>
         <div class="col-md-10" v-else>

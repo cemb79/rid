@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class DeliveryOrderHistory {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer regNo;
 	private String noDO;
 	private Date fechaEstadoDO;
