@@ -44,7 +44,7 @@ public class UserController {
 			map.put("data", user);
 			response = new ResponseEntity<>(map, HttpStatus.OK);
 		} catch (ServiceException e) {
-			logger.error(e.getMessage(), e);
+			logger.error(e.getMessage());
 			response = new ResponseEntity<>(HttpStatus.UNAUTHORIZED); 
 		}
 		

@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.acolcex.rid.model.DeliveryOrder;
 import com.acolcex.rid.service.DeliveryOrderService;
+import com.acolcex.rid.service.ServiceException;
 
 @Controller
 public class DeliveryOrderController {
@@ -25,6 +25,10 @@ public class DeliveryOrderController {
 	private static final Logger logger = LoggerFactory.getLogger(DeliveryOrderController.class);
 	
 	private DeliveryOrderService deliveryOrderService;
+	
+	public DeliveryOrderController(DeliveryOrderService deliveryOrderService) {
+		this.deliveryOrderService = deliveryOrderService;
+	}
 
 	@RequestMapping(value = WebPaths.DELIVERY_ORDER_FIND_ALL, method = RequestMethod.GET)
     @ResponseBody
@@ -33,14 +37,13 @@ public class DeliveryOrderController {
 		Set<DeliveryOrder> dos = deliveryOrderService.findAll();
 		logger.info("Number of delivery orders: {}", dos.size());
 		HashMap<String, Object> body = new HashMap<>();
-		body.put("orders", dos);
+		body.put("data", dos);
 		ResponseEntity<?> response = new ResponseEntity<>(body, getHeaders(), HttpStatus.OK);
 		return response;
 	}
 	
 	private MultiValueMap<String, String> getHeaders() {
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
 		return headers;
 	}
 
@@ -48,14 +51,27 @@ public class DeliveryOrderController {
     @ResponseBody
 	public ResponseEntity<?> findById(@PathVariable Integer id) {
 		logger.info("Finding Delivery Orders by id {}", id);
-		DeliveryOrder order = deliveryOrderService.findById(id);
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("order", order);
-		return new ResponseEntity<>(map, getHeaders(), HttpStatus.OK);
+		ResponseEntity<?> response = null;
+		try {
+			DeliveryOrder order = deliveryOrderService.findById(id);
+			HashMap<String, Object> map = new HashMap<>();
+			map.put("data", order);
+			response = new ResponseEntity<>(map, getHeaders(), HttpStatus.OK);
+		} catch (ServiceException e) {
+			logger.error(e.getMessage(), e);
+			response = new ResponseEntity<>(getHeaders(), HttpStatus.BAD_REQUEST);
+		}
+		
+		return response;
 	}
 	
-	@Autowired
-	public void setDeliveryOrderService(DeliveryOrderService deliveryOrderService) {
-		this.deliveryOrderService = deliveryOrderService;
+	@RequestMapping(value = WebPaths.DELIVERY_ORDER_FIND_USER, method = {RequestMethod.GET})
+    @ResponseBody
+	public ResponseEntity<?> findByUserId(@PathVariable String userId) {
+		logger.info("Finding Delivery Orders by userId {}", userId);
+		Set<DeliveryOrder> dos = deliveryOrderService.findByUserId(userId);
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("data", dos);
+		return new ResponseEntity<>(map, getHeaders(), HttpStatus.OK);
 	}
 }

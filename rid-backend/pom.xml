@@ -3,20 +3,20 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.0.RELEASE</version>
+		<groupId>com.acolcex.rid</groupId>
+		<artifactId>rid</artifactId>
+		<version>1.0-SNAPSHOT</version>
 	</parent>
 	
-	<groupId>com.acolcex</groupId>
-	<artifactId>rid</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>rid-backend</artifactId>
 	<packaging>war</packaging>
-	<name>rid</name>
+	<name>RID Backend</name>
 	<description>Registro Integral Documental</description>
 
 	<properties>
+		<dependency.failOnWarning>false</dependency.failOnWarning>
 		<java.version>8</java.version>
+		<spring.boot.version>2.3.0.RELEASE</spring.boot.version>
 	</properties>
 
 	<dependencies>
@@ -55,12 +55,26 @@
 		</dependency>
 	</dependencies>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<!-- Import dependency management from Spring Boot -->
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring.boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<build>
-		<finalName>${project.artifactId}</finalName>
+		<finalName>rid</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${spring.boot.version}</version>
 				<executions>
 					<execution>
 						<goals>
@@ -80,11 +94,11 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>src/main/webapp/WEB-INF</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/resources/</outputDirectory>
 							<overwrite>true</overwrite>
 							<resources>
 								<resource>
-									<directory>${project.basedir}/front/</directory>
+									<directory>${project.parent.basedir}/rid-front/</directory>
 									<includes>
 										<include>dist/</include>
 										<include>index.html</include>

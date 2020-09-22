@@ -3,6 +3,7 @@ package com.acolcex.rid.model;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,8 @@ public class DeliveryOrder {
 	private Date fechaRegistro;
 	private String tipoOperacion;
 	private String codEstadoDO;
-	private String usuarioID;
+	@Column(name = "UsuarioID")
+	private String userId;
 	//@ManyToOne
 	//@JoinColumn(name = "codCliente")
 	//private Customer customer;
@@ -86,11 +88,11 @@ public class DeliveryOrder {
 	public void setCodEstadoDO(String codEstadoDO) {
 		this.codEstadoDO = codEstadoDO;
 	}
-	public String getUsuarioID() {
-		return usuarioID;
+	public String getUserId() {
+		return userId;
 	}
-	public void setUsuarioID(String usuarioID) {
-		this.usuarioID = usuarioID;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	public String getCodModalidadDO() {
 		return codModalidadDO;
@@ -243,5 +245,4 @@ public class DeliveryOrder {
 			return false;
 		return true;
 	}
-	
 }

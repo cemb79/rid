@@ -51,4 +51,11 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 		
 	}
 
+	@Override
+	public Set<DeliveryOrder> findByUserId(String userId) {
+		Set<DeliveryOrder> result = new HashSet<DeliveryOrder>();
+		deliveryRepository.findByUserId(userId).forEach(result::add);
+		return result;
+	}
+
 }
