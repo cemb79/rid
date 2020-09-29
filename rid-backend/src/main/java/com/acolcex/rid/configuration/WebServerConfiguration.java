@@ -1,30 +1,15 @@
 package com.acolcex.rid.configuration;
 
-import java.util.Collections;
-
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
-//@Configuration
+import com.acolcex.rid.security.NoPasswordEncoder;
+
+@Configuration
 public class WebServerConfiguration {
 
-	//@Bean
-    /*public FilterRegistrationBean<?> simpleCorsFilter() {  
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();  
-        CorsConfiguration config = new CorsConfiguration();  
-        config.setAllowCredentials(true); 
-        // *** URL below needs to match the Vue client URL and port ***
-        config.setAllowedOrigins(Collections.singletonList("http://localhost:8080")); 
-        config.setAllowedMethods(Collections.singletonList("*"));  
-        config.setAllowedHeaders(Collections.singletonList("*"));  
-        source.registerCorsConfiguration("/**", config);  
-        FilterRegistrationBean<?> bean = new FilterRegistrationBean<>(new CorsFilter(source));
-        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);  
-        return bean;  
-    }*/
+	@Bean
+    public NoPasswordEncoder bCryptPasswordEncoder() {
+        return new NoPasswordEncoder();
+    }
 }

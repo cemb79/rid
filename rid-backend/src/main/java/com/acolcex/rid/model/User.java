@@ -2,6 +2,7 @@ package com.acolcex.rid.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,9 +15,12 @@ public class User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String usuarioID;
-	private String usuarioPwd;
-	private Integer usuarioIDNo;
+	@Column(name = "usuarioID")
+	private String id;
+	@Column(name = "usuarioPwd")
+	private String password;
+	@Column(name = "usuarioIDNo")
+	private String username;
 	private String usuarioNombre;
 	private String usuarioROL;
 	private String usuarioEmail;
@@ -28,23 +32,23 @@ public class User {
 	private String usuarioIDStamp;
 	private Date dateStamp;
 	
-	public String getUsuarioID() {
-		return usuarioID;
+	public String getId() {
+		return id;
 	}
-	public void setUsuarioID(String usuarioID) {
-		this.usuarioID = usuarioID;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getUsuarioPwd() {
-		return usuarioPwd;
+	public String getPassword() {
+		return password;
 	}
-	public void setUsuarioPwd(String usuarioPwd) {
-		this.usuarioPwd = usuarioPwd;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	public Integer getUsuarioIDNo() {
-		return usuarioIDNo;
+	public String getUsername() {
+		return username;
 	}
-	public void setUsuarioIDNo(Integer usuarioIDNo) {
-		this.usuarioIDNo = usuarioIDNo;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getUsuarioNombre() {
 		return usuarioNombre;
@@ -106,12 +110,12 @@ public class User {
 	public void setDateStamp(Date dateStamp) {
 		this.dateStamp = dateStamp;
 	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((usuarioID == null) ? 0 : usuarioID.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
 	@Override
@@ -123,10 +127,15 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (usuarioID == null) {
-			if (other.usuarioID != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!usuarioID.equals(other.usuarioID))
+		} else if (!id.equals(other.id))
+			return false;
+		if (username == null) {
+			if (other.username != null)
+				return false;
+		} else if (!username.equals(other.username))
 			return false;
 		return true;
 	}
