@@ -9,4 +9,5 @@ public final class WebPaths {
 	public static final String DELIVERY_ORDER_FIND_USER = "/deliveryOrders/find/user/{userId}";
 	
 	public static final String REPORT_DO_SUMMARY_BY_PORT = "report/deliveryOrder/summary/port/{userId}";
+	public static final String USER_FIND = "/user/{id}";
 }

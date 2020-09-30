@@ -3,6 +3,8 @@ package com.acolcex.rid.service;
 import java.util.Optional;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.acolcex.rid.model.User;
@@ -10,6 +12,8 @@ import com.acolcex.rid.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
+	
+	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 	
 	private UserRepository userRepository;
 	
@@ -28,7 +32,10 @@ public class UserServiceImpl implements UserService {
 	public User findById(String id) throws ServiceException {
 		Optional<User> result = userRepository.findById(id);
 		try {
-			return result.get();
+			User user = result.get();
+			user.setPassword(null);
+			logger.info("User found");
+			return user;
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

@@ -34,7 +34,7 @@ public class ReportRepositoryImpl implements ReportRepository {
 				"  from do,\r\n" + 
 				"       usuariosRid u,\r\n" + 
 				"       Puertos p\r\n" + 
-				" where do.UsuarioID = u.UsuarioID\r\n" + 
+				" where do.codCliente = u.UsuarioID\r\n" + 
 				"   and u.UsuarioID = ?\r\n" + 
 				"   and do.codPuerto = p.CodPuerto\r\n" + 
 				" group by do.codPuerto, p.NombrePuerto";
@@ -48,6 +48,6 @@ public class ReportRepositoryImpl implements ReportRepository {
 				return new DeliveryOrderCityDTO(rs.getString("port"), rs.getString("port_name"), rs.getInt("num_do"));
 			}
 			
-		}); //(rs, rowNum) -> new DeliveryOrderCityDTO(rs.getString("port"), rs.getString("port_name"), rs.getInt("num_do"))
+		});
 	}
 }

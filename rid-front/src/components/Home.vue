@@ -1,42 +1,29 @@
 <template>
-    <div>
-        <div class="col-md-10" v-if="user.userRole !== 'ANE'">
-            <h1>DOs Asignados</h1>
-            <hr>       
+    <div id="home">
+        <div v-if="!isAuthenticated">
+            <app-login/>
         </div>
-        <div class="col-md-10" v-else>
-            <h2>{{ user.name }}<br><small>NIT/COD.: {{ user.code }}</small></h2>
-            <hr>
-            <div class="row">
-                <div class="col-sm-5">
-                    <app-do-by-city></app-do-by-city>
-                </div>
-                <div class="col-sm-5">
-                    <app-active-orders></app-active-orders>
-                </div>
-            </div>
+        <div v-if="isAuthenticated">
+            <app-dashboard/>
         </div>
     </div>
 </template>
 
 <script>
-    import DOByCity from './reports/DOByCity.vue';
-    import ActiveInactiveDO from './reports/ActiveInactiveDO.vue';
+    
+    import Login from './auth/Signin.vue';
+    import Dashboard from './dashboard/Dashboard.vue';
 
     export default {
-        data() {
-            return {
-                user: {
-                    name: 'WESTCON GROUP COLOMBIA LTDA',
-                    code: '830089336',
-                    userRole: 'ANE'
-                },
-                activeDOs: { active: 20, inactive:5}
-            }
-        },
+        
         components: {
-            'app-do-by-city': DOByCity,
-            'app-active-orders': ActiveInactiveDO
+            'app-login': Login,
+            'app-dashboard': Dashboard
+        },
+        computed: {
+            isAuthenticated () {
+                return this.$store.getters.isAuthenticated
+            }
         }
     }
 </script>

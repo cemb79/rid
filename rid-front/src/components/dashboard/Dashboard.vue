@@ -1,0 +1,51 @@
+<template>
+    <div>
+        <div>
+            <app-side-menu></app-side-menu>
+        </div>
+        <div class="col-md-10" v-if="user.userRole !== 'ANE'">
+            <h1>Dashboard</h1>
+            <hr>       
+        </div>
+        <div class="col-md-10" v-else>
+            <h2>{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-5">
+                    <app-do-by-port></app-do-by-port>
+                </div>
+                <div class="col-sm-5">
+                    <app-active-orders></app-active-orders>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+    import SideMenu from '../SideMenu.vue';
+    import DOByPort from '../reports/DOByPort.vue';
+    import ActiveInactiveDO from '../reports/ActiveInactiveDO.vue';
+    import { mapGetters } from "vuex";
+
+    export default {
+        data() {
+            return {
+                user: {
+                    name: 'WESTCON GROUP COLOMBIA LTDA',
+                    code: '830089336',
+                    userRole: 'ANE'
+                },
+                activeDOs: { active: 20, inactive:5}
+            }
+        },
+        components: {
+            appSideMenu: SideMenu,
+            'app-do-by-port': DOByPort,
+            'app-active-orders': ActiveInactiveDO
+        },
+        computed: {
+            ...mapGetters(['getUser'])
+        }
+    }
+</script>
