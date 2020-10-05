@@ -1,25 +1,24 @@
 <template>
-    <div>
-        <div>
-            <app-side-menu></app-side-menu>
-        </div>
-        <div class="col-md-10" v-if="user.userRole !== 'ANE'">
-            <h1>Dashboard</h1>
-            <hr>       
-        </div>
-        <div class="col-md-10" v-else>
-            <h2>{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h2>
-            <hr>
-            <div class="row">
-                <div class="col-sm-5">
-                    <app-do-by-port></app-do-by-port>
+    <el-container>
+        <el-container>
+            <el-main v-if="user.userRole !== 'ANE'">
+                <h1>Dashboard</h1>
+                <hr>       
+            </el-main>
+            <el-main v-else>
+                <h2>{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h2>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <app-do-by-port></app-do-by-port>
+                    </div>
+                    <div class="col-sm-5">
+                        <app-active-orders></app-active-orders>
+                    </div>
                 </div>
-                <div class="col-sm-5">
-                    <app-active-orders></app-active-orders>
-                </div>
-            </div>
-        </div>
-    </div>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
 <script>

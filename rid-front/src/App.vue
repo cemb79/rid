@@ -1,22 +1,29 @@
 <template>
-    <div class="container-fluid">
-        <app-header></app-header>
-        <div class="row">
-            <div class="col-xs-12">
+    <el-container>
+        <el-header>
+            <app-header></app-header>
+        </el-header>
+        <el-container>
+            <el-aside width="300px">
+                <appSideMenu/>
+            </el-aside>
+            <el-main>
                 <transition name="slide" mode="out-in">
                     <router-view></router-view>
                 </transition>
-            </div>
-        </div>
-    </div>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
 <script>
     import Header from './components/Header.vue';
+    import SideMenu from './components/SideMenu.vue';
     
     export default {
         components: {
-            appHeader: Header
+            appHeader: Header,
+            appSideMenu: SideMenu
         }
     }
 </script>

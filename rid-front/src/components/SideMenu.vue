@@ -1,29 +1,44 @@
 <template>
-    <ul class="col-md-2 sidenav">
-        <h4>Registro Integral Documental</h4>
-        <hr class="sidebar-divider">
-        <ul class="nav nav-pills nav-stacked">
-            <router-link to="/" activeClass="active" tag="li"><a><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></router-link>
-        </ul>
-        <hr class="sidebar-divider">
-        <ul class="nav nav-pills nav-stacked" v-if="userRole !== 'ANE'">
-            <router-link :to="{name: 'CreateDO'}" activeClass="active" tag="li"><a>Crear DO</a></router-link>
-            <li><a href="#section2">Asignaciones</a></li>
-            <li><a href="#section3">Reportes</a></li>
-        </ul>
-        <ul class="nav nav-pills nav-stacked" v-else>
-            <router-link :to="{name: 'SearchDO'}" tag="li"><a>Buscar <span class="glyphicon glyphicon-search"></span></a></router-link>
-            <router-link :to="{name: 'ReportHome'}" tag="li"><a>Reportes</a></router-link>
-        </ul>
-        <hr class="sidebar-divider">
-    </ul>
+    <el-row class="tac">
+        <el-col :span="12" v-if="isAuthenticated">
+            <h4>Registro Integral Documental</h4>
+            <el-menu :router="true" default-active="Home" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                background-color="#112773"
+                text-color="#fff"
+                active-text-color="#E5B344">
+                <el-menu-item :index="{name: 'Home'}">
+                    <i class="el-icon-menu"></i>
+                    <span>Dashboard</span>
+                </el-menu-item>
+                <el-menu-item :index="{name: 'SearchDO'}">
+                    <span>Buscar</span><i class="el-icon-search"></i>
+                </el-menu-item>
+                <el-menu-item :index="{name: 'ReportHome'}">
+                    <span>Reportes</span>
+                </el-menu-item>
+            </el-menu>
+        </el-col>
+    </el-row>   
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+
     export default {
         data() {
             return {
                 userRole: 'ANE'
+            }
+        },
+        computed: {
+            ...mapGetters(['isAuthenticated'])
+        },
+        methods: {
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleClose(key, keyPath) {
+                console.log(key, keyPath);
             }
         }
     }
