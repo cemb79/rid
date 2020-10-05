@@ -30,7 +30,8 @@ public class DeliveryOrder {
 	private String userId;
 	//@ManyToOne
 	//@JoinColumn(name = "codCliente")
-	//private Customer customer;
+	@Column(name = "codCliente")
+	private String clientId;
 	private String codModalidadDO;
 	private Date fecVenModTemp;
 	private String codTipoDeclaracion;
@@ -38,7 +39,8 @@ public class DeliveryOrder {
 	private String codMercancia;
 	private String codTransporte;
 	private String docTransporte;
-	private String codPuerto;
+	@Column(name = "codPuerto")
+	private String portId;
 	private String codDeposito;
 	private String manifiesto;
 	private Date manifiestoFecha;
@@ -94,6 +96,12 @@ public class DeliveryOrder {
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public String getClientId() {
+		return clientId;
+	}
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
 	public String getCodModalidadDO() {
 		return codModalidadDO;
 	}
@@ -136,11 +144,11 @@ public class DeliveryOrder {
 	public void setDocTransporte(String docTransporte) {
 		this.docTransporte = docTransporte;
 	}
-	public String getCodPuerto() {
-		return codPuerto;
+	public String getPortId() {
+		return portId;
 	}
-	public void setCodPuerto(String codPuerto) {
-		this.codPuerto = codPuerto;
+	public void setPortId(String portId) {
+		this.portId = portId;
 	}
 	public String getCodDeposito() {
 		return codDeposito;
@@ -245,4 +253,5 @@ public class DeliveryOrder {
 			return false;
 		return true;
 	}
+	
 }
