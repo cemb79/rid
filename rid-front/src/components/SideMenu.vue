@@ -1,6 +1,6 @@
 <template>
     <el-row class="tac">
-        <el-col :span="12" v-if="isAuthenticated">
+        <el-col v-if="isAuthenticated">
             <h4>Registro Integral Documental</h4>
             <el-menu :router="true" default-active="Home" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                 background-color="#112773"
@@ -18,7 +18,7 @@
                 </el-menu-item>
             </el-menu>
         </el-col>
-    </el-row>   
+    </el-row>
 </template>
 
 <script>
@@ -43,3 +43,9 @@
         }
     }
 </script>
+
+<style>
+    .el-menu {
+        border: 0 !important;
+    }
+</style>

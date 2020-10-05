@@ -8,6 +8,7 @@ import './factories/script'
 
 import {
   Aside,
+  Col,
   Container,
   Dropdown,
   DropdownMenu,
@@ -19,9 +20,12 @@ import {
   Row,
   Submenu,
   MenuItem,
-  MenuItemGroup} from 'element-ui';
+  MenuItemGroup,
+  Table,
+  TableColumn} from 'element-ui';
 
 Vue.use(Aside);
+Vue.use(Col);
 Vue.use(Container);
 Vue.use(Dropdown);
 Vue.use(DropdownItem);
@@ -34,6 +38,8 @@ Vue.use(Row);
 Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
+Vue.use(Table);
+Vue.use(TableColumn);
 
 axios.defaults.baseURL = 'http://localhost:8085';
 axios.defaults.headers.get['Accepts'] = 'application/json'

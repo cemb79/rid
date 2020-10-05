@@ -44,4 +44,8 @@
     strong {
         text-align: center
     }
+
+    div {
+        border-bottom: 1px solid #112873;
+    }
 </style>

@@ -13,7 +13,7 @@
                         <app-do-by-port></app-do-by-port>
                     </div>
                     <div class="col-sm-5">
-                        <app-active-orders></app-active-orders>
+                        <app-report></app-report>
                     </div>
                 </div>
             </el-main>
@@ -25,6 +25,7 @@
     import SideMenu from '../SideMenu.vue';
     import DOByPort from '../reports/DOByPort.vue';
     import ActiveInactiveDO from '../reports/ActiveInactiveDO.vue';
+    import Report from '../reports/report.vue';
     import { mapGetters } from "vuex";
 
     export default {
@@ -41,7 +42,8 @@
         components: {
             appSideMenu: SideMenu,
             'app-do-by-port': DOByPort,
-            'app-active-orders': ActiveInactiveDO
+            'app-active-orders': ActiveInactiveDO,
+            appReport: Report
         },
         computed: {
             ...mapGetters(['getUser'])
