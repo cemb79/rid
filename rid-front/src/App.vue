@@ -1,33 +1,19 @@
 <template>
-    <el-container>
-        <el-header>
-            <app-header></app-header>
-        </el-header>
-        <el-container>
-            <el-aside width="300px">
-                <appSideMenu/>
-            </el-aside>
-            <el-main>
-                <transition name="slide" mode="out-in">
-                    <router-view></router-view>
-                </transition>
-            </el-main>
-        </el-container>
-    </el-container>
+    <transition name="slide" mode="out-in">
+        <app-home></app-home>
+    </transition>
 </template>
 
 <script>
-    import Header from './components/Header.vue';
-    import SideMenu from './components/SideMenu.vue';
-    
+    import Home from './components/Home.vue';
+
     export default {
         components: {
-            appHeader: Header,
-            appSideMenu: SideMenu
+            appHome: Home
         }
     }
 </script>
-
+    
 <style>
     body {
         padding: 30px;

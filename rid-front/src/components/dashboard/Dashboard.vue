@@ -1,31 +1,17 @@
 <template>
-    <el-container>
-        <el-container>
-            <el-main v-if="user.userRole !== 'ANE'">
-                <h1>Dashboard</h1>
-                <hr>       
-            </el-main>
-            <el-main v-else>
-                <h2>{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h2>
-                <hr>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <app-do-by-port></app-do-by-port>
-                    </div>
-                    <div class="col-sm-5">
-                        <app-report></app-report>
-                    </div>
-                </div>
-            </el-main>
-        </el-container>
-    </el-container>
+    <el-row :gutter="20">
+        <el-col :span="12">
+            <app-do-by-port></app-do-by-port>
+        </el-col>
+        <el-col :span="12">
+            <app-active-orders></app-active-orders>
+        </el-col>
+    </el-row>
 </template>
 
 <script>
-    import SideMenu from '../SideMenu.vue';
     import DOByPort from '../reports/DOByPort.vue';
     import ActiveInactiveDO from '../reports/ActiveInactiveDO.vue';
-    import Report from '../reports/report.vue';
     import { mapGetters } from "vuex";
 
     export default {
@@ -40,10 +26,8 @@
             }
         },
         components: {
-            appSideMenu: SideMenu,
             'app-do-by-port': DOByPort,
-            'app-active-orders': ActiveInactiveDO,
-            appReport: Report
+            'app-active-orders': ActiveInactiveDO
         },
         computed: {
             ...mapGetters(['getUser'])

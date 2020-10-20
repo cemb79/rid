@@ -1,23 +1,25 @@
 <template>
-    <div class="container-fluid">
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-            <a class="navbar-brand" href="/">
-                        <img src="../assets/Acolcex.png" width="30" height="30">
-                    </a>
-            <el-submenu index="2" v-if="isAuthenticated">
-                <template slot="title">{{username}}</template>
-                <el-menu-item index="2-1">Administración de Usuarios</el-menu-item>
-                <el-menu-item index="logoutMenu">Salir</el-menu-item>
-            </el-submenu>
-        </el-menu>
-    </div>
+    <el-menu class="el-menu-demo" mode="horizontal" :default-active="activeIndex" @select="handleSelect">
+        <el-menu-item index="1">Home</el-menu-item>
+        <el-submenu index="2" v-if="isAuthenticated">
+            <template slot="title">
+                <i class="el-icon-user-solid"></i>
+                <span>{{username}}</span>
+            </template>
+            <el-menu-item index="2-1">Administración de Usuarios</el-menu-item>
+            <el-menu-item index="logoutMenu">Salir</el-menu-item>
+        </el-submenu>
+    </el-menu>
 </template>
 
 <script>
+    import { mapGetters } from "vuex";
+
     export default {
         data() {
             return {
-                isDropdownOpen: false
+                isDropdownOpen: false,
+                activeIndex: '1'
             }
         },
         methods: {
@@ -26,14 +28,13 @@
             },
             handleSelect(key, keyPath) {
                 if(key === 'logoutMenu') {
+                    console.log(keyPath)
                     this.logout();
                 }
             }
         },
         computed: {
-            isAuthenticated () {
-                return this.$store.getters.isAuthenticated
-            },
+            ...mapGetters(['isAuthenticated']),
             username() {
                 return this.$store.state.userId
             }

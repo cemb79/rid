@@ -1,8 +1,8 @@
 <template>
     <el-row class="tac">
         <el-col v-if="isAuthenticated">
-            <h4>Registro Integral Documental</h4>
-            <el-menu :router="true" default-active="Home" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+            <h2>Registro Integral Documental</h2>
+            <el-menu :router="true" :default-active="activeLink" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
                 background-color="#112773"
                 text-color="#fff"
                 active-text-color="#E5B344">
@@ -21,13 +21,14 @@
     </el-row>
 </template>
 
-<script>
+<script scoped>
     import { mapGetters } from "vuex";
 
     export default {
         data() {
             return {
-                userRole: 'ANE'
+                userRole: 'ANE',
+                activeLink: null,
             }
         },
         computed: {
@@ -40,6 +41,14 @@
             handleClose(key, keyPath) {
                 console.log(key, keyPath);
             }
+        },
+        mounted () {
+            this.activeLink = this.$route.path
+        },
+        watch: {
+            $route (newVal) {
+                this.activeLink = newVal.path
+            }
         }
     }
 </script>
@@ -47,5 +56,10 @@
 <style>
     .el-menu {
         border: 0 !important;
+    }
+
+    h2 {
+        padding-top: 10px;
+        text-align: center;
     }
 </style>

@@ -4,7 +4,7 @@
             <app-login/>
         </div>
         <div v-if="isAuthenticated">
-            <app-dashboard/>
+            <app-admin-dashboard></app-admin-dashboard>
         </div>
     </div>
 </template>
@@ -12,13 +12,13 @@
 <script>
     
     import Login from './auth/Signin.vue';
-    import Dashboard from './dashboard/Dashboard.vue';
+    import AdminDashboard from './dashboard/AdminDashboard.vue';
 
     export default {
         
         components: {
             'app-login': Login,
-            'app-dashboard': Dashboard
+            appAdminDashboard: AdminDashboard
         },
         computed: {
             isAuthenticated () {

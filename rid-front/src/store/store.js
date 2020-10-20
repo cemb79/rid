@@ -10,7 +10,8 @@ export default new Vuex.Store({
     state: {
         tokenId: null,
         userId: null,
-        user: null
+        user: null,
+        context: null
     },
     getters: {
         isAuthenticated (state) {
@@ -24,6 +25,9 @@ export default new Vuex.Store({
         },
         getUser (state) {
             return state.user
+        },
+        getContext (state) {
+            return state.context
         }
     },
     mutations: {
@@ -37,10 +41,13 @@ export default new Vuex.Store({
         },
         storeUser (state, user) {
             state.user = user
+        },
+        storeContext (state, context) {
+            state.context = context
         }
     },
     actions: {
-        login ({commit, dispatch}, authData) {
+        login ({commit}, authData) {
             return axios.post(Urls.LOGIN, {username: authData.username, password: authData.password})
                 .then(result => {
                     localStorage.setItem('tokenId', result.data.data.idToken)
@@ -74,10 +81,18 @@ export default new Vuex.Store({
             axios.get(url)
                 .then(result => {
                     const res = result.data.data
-                    console.log(res)
                     commit('storeUser', res)
                 })
                 .catch(error => console.log(error));
+        },
+        findDoByClientIdAndPortId (context, payload) {
+            let url = Urls.DELIVERY_ORDER_FIND_CLIENT_PORT.format(payload.userId, payload.portId, payload.page);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
         }
     }
 });
