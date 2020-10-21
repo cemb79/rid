@@ -1,44 +1,48 @@
 <template>
     <div class="panel panel-default panel-success">
-        <div class="panel-heading">
-            <h4>DO Activos por Puerto</h4>
-        </div>
-        <div class="panel-body">
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed table-responsive">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Puerto</th>
-                            <th class="text-center">Ciudad</th>
-                            <th class="text-center">DOs Activos</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="doCity in dosByCity">
-                            <td class="text-center">{{ doCity.port }}</td>
-                            <td class="text-center">{{ doCity.portName }}</td>
-                            <td class="text-center">{{ doCity.numDO }}</td>  
-                        </tr>
-                    </tbody>
-                </table>
+        <el-card>
+            <div class="panel-heading">
+                <h4>DO Activos por Puerto</h4>
             </div>
-        </div>
+            <el-table :data="dosByCity" @row-click="selectRow">
+                <el-table-column
+                    prop="port"
+                    label="Puerto"
+                    width="180">
+                </el-table-column>
+                <el-table-column
+                    prop="portName"
+                    label="Ciudad"
+                    width="180">
+                </el-table-column>
+                <el-table-column
+                    prop="numDO"
+                    label="DOs Activos"
+                    width="180">
+                </el-table-column>
+            </el-table>
+        </el-card>
     </div>
 </template>
 
 <script>
-    import axios from "axios";
-    import Urls from "../../routes/urls";
     import { mapGetters } from "vuex";
+
     export default {
         data() {
             return {
                 dosByCity: [
-                    /*{city: 'CTG', numDO: 5},
-                    {city: 'BOG', numDO: 10},
-                    {city: 'MDE', numDO: 7}*/
+                    /*{port: 'CTG', portName: 'Cartagena', numDO: 5},
+                    {port: 'BOG', numDO: 10},
+                    {port: 'MDE', numDO: 7}*/
                 ],
-                userId: 'fhernandez'
+                userId: ''
+            }
+        },
+        methods: {
+            selectRow(row) {
+                this.$store.commit('storeContext', { port: row.port })
+                this.$router.push('/delivery/list');
             }
         },
         created() {

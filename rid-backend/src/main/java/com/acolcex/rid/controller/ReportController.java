@@ -58,7 +58,7 @@ public class ReportController {
     @ResponseBody
 	public ApiResponse findDoByClientIdAndPortId(@PathVariable String clientId, @PathVariable String portId, 
 												@RequestParam(defaultValue = "0") int page,
-	        									@RequestParam(defaultValue = "3") int size) {
+	        									@RequestParam(defaultValue = "25") int size) {
 		logger.info("Finding DOs by clientId {} and port {}", clientId, portId);
 		ApiResponse response = null;
 		try {

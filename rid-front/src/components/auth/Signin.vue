@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="header">
-            <h2 class="logo">LOGO HERE</h2>
+            <img src="../../assets/Acolcex.png" class="center" width="60" height="60">
         </div>
         <div class="login">
             <el-card>

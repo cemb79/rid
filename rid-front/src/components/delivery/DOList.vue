@@ -1,15 +1,25 @@
 <template>
     <el-card>
-        <h2>Puerto {{ getContext.port }}</h2>
+        <h2>Puerto {{ port }}</h2>
         <el-row>
-            <el-table :data="doData" height="750" stripe>
+            <el-table :data="doData" height="750" stripe @row-click="selectRow" v-loading="loading">
                 <el-table-column
-                    prop="codDeposito"
-                    label="Código Depósito"
+                    prop="noDO"
+                    label="Código DO"
+                    width="120">
+                </el-table-column>
+                <el-table-column
+                    prop="docTransporte"
+                    label="Documento Transporte"
                     width="180">
                 </el-table-column>
                 <el-table-column
-                    prop="codMercancia"
+                    prop="codEstadoDO"
+                    label="Estado"
+                    width="90">
+                </el-table-column>
+                <el-table-column
+                    prop="goods.codMercancia"
                     label="Código Mercancía"
                     width="180">
                 </el-table-column>
@@ -18,11 +28,6 @@
                     label="Moneda"
                     width="90">
                 </el-table-column>
-                <el-table-column
-                    prop="docTransporte"
-                    label="Documento Transporte"
-                    width="180">
-                </el-table-column> tipoOperacion
                 <el-table-column
                     prop="tipoOperacion"
                     label="Tipo Operación"
@@ -45,7 +50,7 @@
         <el-row>
             <el-pagination
                 layout="prev, pager, next"
-                page-size="25"
+                :page-size="25"
                 :total="totalElements"
                 @next-click="nextPage"
                 @prev-click="previousPage"
@@ -64,15 +69,17 @@
                 doData: [],
                 totalPages: 0, 
                 currentPage: 0,
-                totalElements: 0
+                totalElements: 0,
+                port: '',
+                loading: true
             }
         },
         computed: {
             ...mapGetters(['getUserId', 'getContext'])
         },
         created() {
-            console.log(this.getContext.port);
-            this.fetchData(0);
+            this.port = this.getContext.port;
+            this.fetchData(1);
         },
         methods: {
             formatDate(date) {
@@ -97,21 +104,28 @@
             goToPage(page) {
                 this.fetchData(page);
             },
-            fetchData(page) {
+            fetchData(pageNum) {
+                this.loading = true;
+                pageNum = pageNum - 1;
                 const payload = {userId: this.getUserId, 
                                 portId:this.getContext.port,
-                                page }
+                                page: pageNum }
                 this.$store.dispatch('findDoByClientIdAndPortId', payload)
                 .then(res => {
-                    console.log(res)
                     this.totalPages = res.data.data.totalPages;
                     this.doData = res.data.data.content;
                     this.currentPage = res.data.data.currentPage;
                     this.totalElements = res.data.data.totalElements;
+                    this.loading = false;
                 })
                 .catch(err => {
                     console.log(err)
+                    this.loading = false;
                 });
+            },
+            selectRow(row) {
+                let resource = '/delivery/' + row.noDO;
+                this.$router.push(resource);
             }
         }
     }

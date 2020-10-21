@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +19,6 @@ public class DeliveryOrderHistory {
 	private Integer regNo;
 	private String noDO;
 	private Date fechaEstadoDO;
-	private Integer codEstOpeDO;
 	private String estCompletado;
 	private String encargado;
 	private String observacionCliente;
@@ -25,6 +26,9 @@ public class DeliveryOrderHistory {
 	private String usuarioIDStamp;
 	private String ubicacion;
 	private Date dateStamp;
+	@ManyToOne
+	@JoinColumn(name = "codEstOpeDO")
+	private OperationState operationState;
 	
 	public Integer getRegNo() {
 		return regNo;
@@ -43,12 +47,6 @@ public class DeliveryOrderHistory {
 	}
 	public void setFechaEstadoDO(Date fechaEstadoDO) {
 		this.fechaEstadoDO = fechaEstadoDO;
-	}
-	public Integer getCodEstOpeDO() {
-		return codEstOpeDO;
-	}
-	public void setCodEstOpeDO(Integer codEstOpeDO) {
-		this.codEstOpeDO = codEstOpeDO;
 	}
 	public String getEstCompletado() {
 		return estCompletado;
@@ -91,6 +89,12 @@ public class DeliveryOrderHistory {
 	}
 	public void setDateStamp(Date dateStamp) {
 		this.dateStamp = dateStamp;
+	}
+	public OperationState getOperationState() {
+		return operationState;
+	}
+	public void setOperationState(OperationState operationState) {
+		this.operationState = operationState;
 	}
 	
 	@Override

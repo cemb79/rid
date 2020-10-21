@@ -1,6 +1,7 @@
 package com.acolcex.rid.service;
 
 import java.util.HashSet;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -8,12 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.acolcex.rid.model.DeliveryOrder;
+import com.acolcex.rid.model.DeliveryOrderHistory;
+import com.acolcex.rid.model.DeliveryOrderManagement;
+import com.acolcex.rid.repository.DeliveryOrderHistoryRepository;
+import com.acolcex.rid.repository.DeliveryOrderManagementRepository;
 import com.acolcex.rid.repository.DeliveryOrderRepository;
 
 @Service
 public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	
 	private DeliveryOrderRepository deliveryRepository;
+	private DeliveryOrderManagementRepository doManagementRepository;
+	private DeliveryOrderHistoryRepository doHistoryRespository;
+	
+	public DeliveryOrderServiceImpl(DeliveryOrderRepository deliveryRepository, DeliveryOrderManagementRepository doManagementRepository,
+			DeliveryOrderHistoryRepository doHistoryRespository) {
+		this.deliveryRepository = deliveryRepository;
+		this.doManagementRepository = doManagementRepository;
+		this.doHistoryRespository = doHistoryRespository;
+	}
 
 	@Override
 	public DeliveryOrder save(DeliveryOrder deliveryOrder) {
@@ -29,9 +43,13 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	}
 	
 	@Override
-	public DeliveryOrder findById(Integer id) {
-		Optional<DeliveryOrder> order = deliveryRepository.findById(id);
-		return order.get();
+	public DeliveryOrder findById(Integer id) throws ServiceException {
+		Optional<DeliveryOrder> order = deliveryRepository.findByNoDO(id.toString());
+		try {
+			return order.get();
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
 	@Autowired
@@ -56,6 +74,27 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 		Set<DeliveryOrder> result = new HashSet<DeliveryOrder>();
 		deliveryRepository.findByUserId(userId).forEach(result::add);
 		return result;
+	}
+
+	@Override
+	public DeliveryOrderManagement findDOManagementByDOId(String doId) throws ServiceException {
+		Optional<DeliveryOrderManagement> result = doManagementRepository.findByNoDO(doId);
+		try {
+			return result.get();
+		} catch (NoSuchElementException e) {
+			return null;
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
+	}
+
+	@Override
+	public Set<DeliveryOrderHistory> findDOHistoryByDOId(String doId) throws ServiceException {
+		try {
+			return doHistoryRespository.findByNoDO(doId);
+		} catch (Exception e) {
+			throw new ServiceException(e.getMessage(), e);
+		}
 	}
 
 }

@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-aside width="200px">
+        <el-aside width="250px">
             <app-side-menu></app-side-menu>
         </el-aside>
         <el-container>
@@ -8,9 +8,11 @@
                 <app-header></app-header>
             </el-header>
             <el-main>
-                <h2 v-if="getUser">{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h2>
+                <h1>{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h1>
                 <hr>
-                <router-view></router-view>
+                <transition name="el-fade-in-linear">
+                    <router-view></router-view>
+                </transition>
             </el-main>
         </el-container>
     </el-container>
@@ -22,16 +24,6 @@
     import { mapGetters } from "vuex";
 
     export default {
-        data() {
-            return {
-                user: {
-                    name: 'WESTCON GROUP COLOMBIA LTDA',
-                    code: '830089336',
-                    userRole: 'ANE'
-                },
-                activeDOs: { active: 20, inactive:5}
-            }
-        },
         components: {
             appSideMenu: SideMenu,
             appHeader: Header
@@ -41,3 +33,9 @@
         }
     }
 </script>
+
+<style scoped>
+    h1 {
+        text-align: center;
+    }
+</style>

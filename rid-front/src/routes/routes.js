@@ -8,6 +8,7 @@ import SearchDO from '../components/delivery/SearchDeliveryOrder.vue';
 import ReportHome from '../components/reports/ReportHome.vue';
 import SigninPage from '../components/auth/Signin.vue';
 import DOList from '../components/delivery/DOList.vue';
+import DODetail from '../components/delivery/DeliveryOrderDetail.vue';
 
 
 Vue.use(VueRouter);
@@ -24,6 +25,7 @@ export const routes = [
     { path: '/delivery/list', name: 'DOList', component: DOList},
     { path: '/delivery/create', name: 'CreateDO', component: CreateDO},
     { path: '/delivery/search', name: 'SearchDO', component: SearchDO},
+    { path: '/delivery/:doId', name: 'DODetail', component: DODetail, props:true},
     { path: '/reports', name: 'ReportHome', component: ReportHome}
 ];
 

@@ -4,5 +4,8 @@ export default {
     LOGIN: '/login',
     SIGNIN: '/signin',
     USER_FIND_ID: '/user/{0}',
-    DELIVERY_ORDER_FIND_CLIENT_PORT: "deliveryOrders/find/{0}/{1}?page={2}"
+    DELIVERY_ORDER_FIND_CLIENT_PORT: "deliveryOrders/find/{0}/{1}?page={2}",
+    DELIVERY_ORDER_FIND_ID: "/deliveryOrders/find/{0}",
+    DELIVERY_ORDER_MANAGEMENT: "/deliveryOrders/management/{0}",
+    DELIVERY_ORDER_HISTORY: "/deliveryOrders/history/{0}"
 }

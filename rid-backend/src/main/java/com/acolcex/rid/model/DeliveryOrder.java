@@ -36,7 +36,7 @@ public class DeliveryOrder {
 	private Date fecVenModTemp;
 	private String codTipoDeclaracion;
 	private String noPedido;
-	private String codMercancia;
+	//private String codMercancia;
 	private String codTransporte;
 	private String docTransporte;
 	@Column(name = "codPuerto")
@@ -53,6 +53,9 @@ public class DeliveryOrder {
 	private String descripcionMercancia;
 	private String usuarioIDStamp;
 	private Date dateStamp;
+	@ManyToOne
+	@JoinColumn(name = "codMercancia")
+	private Goods goods;
 	
 	public Integer getRegDO() {
 		return regDO;
@@ -126,12 +129,12 @@ public class DeliveryOrder {
 	public void setNoPedido(String noPedido) {
 		this.noPedido = noPedido;
 	}
-	public String getCodMercancia() {
+	/*public String getCodMercancia() {
 		return codMercancia;
 	}
 	public void setCodMercancia(String codMercancia) {
 		this.codMercancia = codMercancia;
-	}
+	}*/
 	public String getCodTransporte() {
 		return codTransporte;
 	}
@@ -221,6 +224,12 @@ public class DeliveryOrder {
 	}
 	public void setDateStamp(Date dateStamp) {
 		this.dateStamp = dateStamp;
+	}
+	public Goods getGoods() {
+		return goods;
+	}
+	public void setGoods(Goods goods) {
+		this.goods = goods;
 	}
 	/*public Customer getCustomer() {
 		return customer;

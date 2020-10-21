@@ -16,6 +16,7 @@ import {
   Card,
   Col,
   Container,
+  Divider,
   Dropdown,
   DropdownMenu,
   DropdownItem,
@@ -24,6 +25,7 @@ import {
   Header,
   Icon,
   Input,
+  Loading,
   Main,
   Menu,
   Pagination,
@@ -32,13 +34,16 @@ import {
   MenuItem,
   MenuItemGroup,
   Table,
-  TableColumn} from 'element-ui';
+  TableColumn,
+  Timeline,
+  TimelineItem,} from 'element-ui';
 
 Vue.use(Aside);
 Vue.use(Button);
 Vue.use(Card);
 Vue.use(Col);
 Vue.use(Container);
+Vue.use(Divider);
 Vue.use(Dropdown);
 Vue.use(DropdownItem);
 Vue.use(DropdownMenu);
@@ -47,6 +52,7 @@ Vue.use(FormItem);
 Vue.use(Header);
 Vue.use(Icon);
 Vue.use(Input);
+Vue.use(Loading);
 Vue.use(Main);
 Vue.use(Menu);
 Vue.use(Pagination);
@@ -56,6 +62,10 @@ Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Timeline);
+Vue.use(TimelineItem);
+
+Vue.use(Loading.directive);
 
 locale.use(lang);
 

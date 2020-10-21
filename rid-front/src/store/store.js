@@ -93,6 +93,35 @@ export default new Vuex.Store({
                     return response
                 })
                 .catch((error) => console.log(error));
+        },
+        findDoById (context, doId) {
+            let url = Urls.DELIVERY_ORDER_FIND_ID.format(doId);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
+        },
+        findDOManagement (context, doId) {
+            let url = Urls.DELIVERY_ORDER_MANAGEMENT.format(doId);
+            console.log(url);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
+        },
+        findDOHistory (context, doId) {
+            let url = Urls.DELIVERY_ORDER_HISTORY.format(doId);
+            console.log(url);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
         }
     }
 });
