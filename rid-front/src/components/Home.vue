@@ -22,7 +22,7 @@
         },
         computed: {
             isAuthenticated () {
-                return this.$store.getters.isAuthenticated
+                return !this.$store.getters.isAuthenticated ? false : this.$store.getters.isAuthenticated
             }
         }
     }

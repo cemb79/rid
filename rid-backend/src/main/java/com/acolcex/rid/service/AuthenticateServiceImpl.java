@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.acolcex.rid.model.User;
-import com.acolcex.rid.model.dto.AuthenticateResponse;
 import com.acolcex.rid.repository.UserRepository;
 
 @Service
@@ -22,17 +21,6 @@ public class AuthenticateServiceImpl implements AuthenticateService {
 	
 	public AuthenticateServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
-	}
-
-	@Override
-	public AuthenticateResponse authenticate(String username, String password) {
-		Optional<User> response = userRepository.findByUsernameAndPassword(username, password);
-		try {
-			User user = response.get();
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
 	}
 
 	@Override

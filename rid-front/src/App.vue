@@ -10,6 +10,9 @@
     export default {
         components: {
             appHome: Home
+        },
+        created() {
+            this.$store.dispatch('tryAutoLogin');
         }
     }
 </script>

@@ -29,6 +29,8 @@ import {
   Loading,
   Main,
   Menu,
+  MessageBox,
+  Message,
   Pagination,
   Row,
   Submenu,
@@ -66,8 +68,14 @@ Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Timeline);
 Vue.use(TimelineItem);
-
 Vue.use(Loading.directive);
+
+Vue.prototype.$loading = Loading.service;
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$alert = MessageBox.alert;
+Vue.prototype.$confirm = MessageBox.confirm;
+Vue.prototype.$prompt = MessageBox.prompt;
+Vue.prototype.$message = Message;
 
 locale.use(lang);
 

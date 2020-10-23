@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container v-if="isAuthenticated">
         <el-aside width="200px">
             <app-side-menu></app-side-menu>
         </el-aside>
@@ -8,7 +8,7 @@
                 <app-header></app-header>
             </el-header>
             <el-main>
-                <h1>{{ getUser.usuarioNombre }}<br><small>NIT/COD.: {{ getUser.username }}</small></h1>
+                <h1>{{ name }}<br><small>NIT/COD.: {{ userId }}</small></h1>
                 <hr>
                 <transition name="el-fade-in-linear">
                     <router-view></router-view>
@@ -29,7 +29,16 @@
             appHeader: Header
         },
         computed: {
-            ...mapGetters(['getUser'])
+            ...mapGetters(['isAuthenticated']),
+            name() {
+                return !this.$store.getters.getUser ? false : this.$store.getters.getUser.usuarioNombre
+            },
+            userId() {
+                return !this.$store.getters.getUser ? false : this.$store.getters.getUser.username
+            }
+        }, 
+        created () {
+            this.$store.dispatch('fetchUser');
         }
     }
 </script>

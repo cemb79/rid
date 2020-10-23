@@ -71,11 +71,18 @@
                 }
                 this.$store.dispatch('login', {username: formData.username, password: formData.password})
                     .then(result => {
-                        console.log('Login result: ' + result)
-                        this.$store.dispatch('fetchUser')
+                        result.data;
                         this.loading = false;
                     })
-                    .catch((error) => console.log(error));
+                    .catch((error) => {
+                        console.log('failed authentication', error)
+                        this.$message({
+                            showClose: true,
+                            message: 'Usuario o contraseña inválidos',
+                            type: 'error'
+                        });
+                        this.loading = false;
+                    });
             },
             submitForm(formName) {
                 this.$refs[formName].validate((valid) => {

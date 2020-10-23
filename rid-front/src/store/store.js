@@ -32,6 +32,7 @@ export default new Vuex.Store({
     },
     mutations: {
         authUser (state, userData) {
+            console.log('saving state auth')
             state.tokenId = userData.token
             state.userId = userData.userId
         },
@@ -47,17 +48,29 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        login ({commit}, authData) {
+        login ({commit, dispatch}, authData) {
             return axios.post(Urls.LOGIN, {username: authData.username, password: authData.password})
                 .then(result => {
+                    //console.log('Login result', result);
                     localStorage.setItem('tokenId', result.data.data.idToken)
                     localStorage.setItem('userId', authData.username)
                     commit('authUser', {
                         token: result.data.data.idToken,
                         userId: authData.username
                     })
-                })
-                .catch(error => console.log(error));
+                    dispatch('fetchUser');
+                    return result;
+                });
+        },
+        tryAutoLogin ({commit}){
+            console.log('tryAutoLogin')
+            const token = localStorage.getItem('tokenId');
+            if(!token){
+                return;
+            }
+            const userId = localStorage.getItem('userId');
+            console.log(token, userId)
+            commit('authUser', {token: token, userId: userId})
         },
         logout ({commit}) {
             commit('clearAuthData')
@@ -74,14 +87,15 @@ export default new Vuex.Store({
                 })
                 .catch((error) => console.log(error));
         },
-        fetchUser ({commit, state}) {
-            let url = Urls.USER_FIND_ID.format(state.userId);
-            console.log(state.userId + ' ' + url)
+        fetchUser ({commit}) {
+            let url = Urls.USER_FIND_ID.format(this.state.userId);
+            console.log('FetchUser URL', url)
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
             axios.get(url)
                 .then(result => {
                     const res = result.data.data
                     commit('storeUser', res)
+                    console.log('User stored', res);
                 })
                 .catch(error => console.log(error));
         },
