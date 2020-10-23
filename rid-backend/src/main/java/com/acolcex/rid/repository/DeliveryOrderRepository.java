@@ -16,4 +16,6 @@ public interface DeliveryOrderRepository extends JpaRepository<DeliveryOrder, In
 	public Set<DeliveryOrder> findByUserId(String userId);
 	
 	public Page<DeliveryOrder> findByPortIdAndClientId(String portId, String clientId, Pageable pageable);
+	
+	public Page<DeliveryOrder> findByClientIdAndDocTransporteContainingOrNoDOContainingOrNoPedidoContaining(String clientId, String docTran, String noDo, String noPedido, Pageable pageable);
 }

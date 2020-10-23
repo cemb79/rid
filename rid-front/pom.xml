@@ -32,7 +32,7 @@
                 <configuration>
                     <workingDirectory>./</workingDirectory>
                     <nodeVersion>v12.16.1</nodeVersion>
-                    <npmVersion>6.13.4</npmVersion>
+                    <npmVersion>6.14.4</npmVersion>
                 </configuration>
                 <executions>
                     <execution>
@@ -46,6 +46,9 @@
                         <goals>
                             <goal>npm</goal>
                         </goals>
+                        <configuration>
+              				<arguments>install</arguments>
+            			</configuration>
                     </execution>
                     <execution>
                         <id>npm run build</id>

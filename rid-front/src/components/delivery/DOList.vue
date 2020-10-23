@@ -111,21 +111,20 @@
                                 portId:this.getContext.port,
                                 page: pageNum }
                 this.$store.dispatch('findDoByClientIdAndPortId', payload)
-                .then(res => {
-                    this.totalPages = res.data.data.totalPages;
-                    this.doData = res.data.data.content;
-                    this.currentPage = res.data.data.currentPage;
-                    this.totalElements = res.data.data.totalElements;
-                    this.loading = false;
-                })
-                .catch(err => {
-                    console.log(err)
-                    this.loading = false;
-                });
+                    .then(res => {
+                        this.totalPages = res.data.data.totalPages;
+                        this.doData = res.data.data.content;
+                        this.currentPage = res.data.data.currentPage;
+                        this.totalElements = res.data.data.totalElements;
+                        this.loading = false;
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        this.loading = false;
+                    });
             },
             selectRow(row) {
-                let resource = '/delivery/' + row.noDO;
-                this.$router.push(resource);
+                this.$router.push({ name: 'DODetail', params: { doId: row.noDO } });
             }
         }
     }

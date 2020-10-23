@@ -31,7 +31,6 @@
         created() {
             this.$store.dispatch('findDOHistory', this.doId)
                 .then(res => {
-                    console.log(res.data.data);
                     this.doHistory = res.data.data;
                 })
                 .catch(err => {

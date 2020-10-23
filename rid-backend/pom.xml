@@ -9,7 +9,7 @@
 	</parent>
 	
 	<artifactId>rid-backend</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>RID Backend</name>
 	<description>Registro Integral Documental</description>
 
@@ -104,15 +104,11 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/resources/</outputDirectory>
+							<outputDirectory>${project.build.outputDirectory}/resources</outputDirectory>
 							<overwrite>true</overwrite>
 							<resources>
 								<resource>
-									<directory>${project.parent.basedir}/rid-front/</directory>
-									<includes>
-										<include>dist/</include>
-										<include>index.html</include>
-									</includes>
+									<directory>${project.parent.basedir}/rid-front/dist</directory>
 								</resource>
 							</resources>
 						</configuration>

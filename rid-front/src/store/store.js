@@ -115,13 +115,21 @@ export default new Vuex.Store({
         },
         findDOHistory (context, doId) {
             let url = Urls.DELIVERY_ORDER_HISTORY.format(doId);
-            console.log(url);
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
             return axios.get(url)
                 .then((response) => {
                     return response
                 })
                 .catch((error) => console.log(error));
-        }
+        },
+        findDoByClientIdAndCriteria (context, payload) {
+            let url = Urls.DELIVERY_ORDER_FIND_CLIENT_CRITERIA.format(payload.userId, payload.criteria);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
+        },
     }
 });

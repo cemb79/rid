@@ -1,6 +1,6 @@
 <template>
     <el-container>
-        <el-aside width="250px">
+        <el-aside width="200px">
             <app-side-menu></app-side-menu>
         </el-aside>
         <el-container>
@@ -37,5 +37,10 @@
 <style scoped>
     h1 {
         text-align: center;
+    }
+
+    .el-aside {
+        min-height: 100vh;
+        background-color: #112773;
     }
 </style>

@@ -12,6 +12,7 @@ import locale from 'element-ui/lib/locale'
 
 import {
   Aside,
+  Autocomplete,
   Button,
   Card,
   Col,
@@ -39,6 +40,7 @@ import {
   TimelineItem,} from 'element-ui';
 
 Vue.use(Aside);
+Vue.use(Autocomplete);
 Vue.use(Button);
 Vue.use(Card);
 Vue.use(Col);

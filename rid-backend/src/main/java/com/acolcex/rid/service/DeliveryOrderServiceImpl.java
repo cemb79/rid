@@ -6,7 +6,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import com.acolcex.rid.model.DeliveryOrder;
 import com.acolcex.rid.model.DeliveryOrderHistory;
@@ -95,6 +98,15 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(), e);
 		}
+	}
+
+	@Override
+	public Page<DeliveryOrder> findDOByCriteria(String userId, String criteria, Pageable pageable) {
+		Page<DeliveryOrder> page = Page.empty();
+		if(!StringUtils.isEmpty(criteria)) {
+			page = deliveryRepository.findByClientIdAndDocTransporteContainingOrNoDOContainingOrNoPedidoContaining(userId, criteria, criteria, criteria, pageable);
+		}
+		return page;
 	}
 
 }
