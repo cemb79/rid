@@ -54,4 +54,8 @@
     div {
         border-bottom: 1px solid #EBEEF5;
     }
+
+    .el-submenu {
+        align-self: flex-end;
+    } 
 </style>

@@ -75,10 +75,10 @@
             }
         },
         computed: {
-            ...mapGetters(['getUserId', 'getContext'])
+            ...mapGetters(['getUserId'])
         },
         created() {
-            this.port = this.getContext.port;
+            this.port = this.$route.params.portId;
             this.fetchData(1);
         },
         methods: {
@@ -108,7 +108,7 @@
                 this.loading = true;
                 pageNum = pageNum - 1;
                 const payload = {userId: this.getUserId, 
-                                portId:this.getContext.port,
+                                portId:this.port,
                                 page: pageNum }
                 this.$store.dispatch('findDoByClientIdAndPortId', payload)
                     .then(res => {

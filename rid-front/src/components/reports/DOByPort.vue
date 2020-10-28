@@ -41,8 +41,7 @@
         },
         methods: {
             selectRow(row) {
-                this.$store.commit('storeContext', { port: row.port })
-                this.$router.push('/delivery/list');
+                this.$router.push({name: 'DOListPort', params: { portId: row.port }});
             }
         },
         created() {

@@ -10,8 +10,7 @@ export default new Vuex.Store({
     state: {
         tokenId: null,
         userId: null,
-        user: null,
-        context: null
+        user: null
     },
     getters: {
         isAuthenticated (state) {
@@ -25,9 +24,6 @@ export default new Vuex.Store({
         },
         getUser (state) {
             return state.user
-        },
-        getContext (state) {
-            return state.context
         }
     },
     mutations: {
@@ -42,22 +38,29 @@ export default new Vuex.Store({
         },
         storeUser (state, user) {
             state.user = user
-        },
-        storeContext (state, context) {
-            state.context = context
         }
     },
     actions: {
+        setLogoutTimer({commit}, expirationTime) {
+            setTimeout(() => {
+                commit('clearAuthData')
+            }, expirationTime * 1000);
+        },
         login ({commit, dispatch}, authData) {
             return axios.post(Urls.LOGIN, {username: authData.username, password: authData.password})
                 .then(result => {
                     //console.log('Login result', result);
-                    localStorage.setItem('tokenId', result.data.data.idToken)
-                    localStorage.setItem('userId', authData.username)
+                    const now = new Date();
+                    const expirationDate = new Date(now.getTime() + result.data.data.expirationTime * 1000);
+                    console.log(result.data.data.expirationTime, expirationDate)
+                    localStorage.setItem('tokenId', result.data.data.idToken);
+                    localStorage.setItem('userId', authData.username);
+                    localStorage.setItem('expirationDate', expirationDate);
                     commit('authUser', {
                         token: result.data.data.idToken,
                         userId: authData.username
                     })
+                    //dispatch('setLogoutTimer');
                     dispatch('fetchUser');
                     return result;
                 });
@@ -68,14 +71,21 @@ export default new Vuex.Store({
             if(!token){
                 return;
             }
+            const expirationDate = localStorage.getItem('expirationDate');
+            const now = new Date();
+            if(now.getTime() >= expirationDate) {
+                return;
+            }
             const userId = localStorage.getItem('userId');
             console.log(token, userId)
             commit('authUser', {token: token, userId: userId})
         },
         logout ({commit}) {
             commit('clearAuthData')
-            localStorage.removeItem('token')
+            console.log('Loging out')
+            localStorage.removeItem('tokenId')
             localStorage.removeItem('userId')
+            localStorage.removeItem('expirationDate')
             router.replace(Urls.HOME)
         },
         getDosByCity (context, userId) {

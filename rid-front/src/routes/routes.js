@@ -29,7 +29,7 @@ export const routes = [
       name: 'Signin', 
       component: SigninPage
     },
-    { path: '/delivery/list', name: 'DOList', component: DOList},
+    { path: '/delivery/list/port/:portId', name: 'DOListPort', component: DOList},
     { path: '/delivery/create', name: 'CreateDO', component: CreateDO},
     { path: '/delivery/search', name: 'SearchDO', component: SearchDO},
     { path: '/delivery/:doId', name: 'DODetail', component: DODetail, props:true},

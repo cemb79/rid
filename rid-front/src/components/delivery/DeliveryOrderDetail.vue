@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content" v-if="deliveryOrder">
         <h1>Delivery Order: {{deliveryOrder.noDO}}<br><small>DOC. TRANSPORTE: {{ deliveryOrder.docTransporte }}</small></h1>
         <hr>
         <el-row :gutter="10">
@@ -48,13 +48,7 @@
         <el-row>
             <el-col :span="12">
                 <h1>Indicadores</h1>
-                <el-timeline :reverse="reverse">
-                    <el-timeline-item v-for="(activity, index) in activities"
-                        :key="index"
-                        :timestamp="activity.timestamp">
-                        {{activity.content}}
-                    </el-timeline-item>
-                </el-timeline>
+                <app-history-timeline :doId="deliveryOrder.noDO"></app-history-timeline>
             </el-col>
             <el-col :span="12">
                 <h1>Detalles de Actividades de la Operación</h1>
@@ -66,6 +60,7 @@
 
 <script>
     import DOHistory from './DOHistory.vue';
+    import DOHistoryTimeline from './DOHistoryTimeline.vue';
 
     export default {
         props: ['doId'],
@@ -73,21 +68,12 @@
             return {
                 reverse: false,
                 deliveryOrder: null,
-                doManagement: null,
-                activities: [{
-                        content: 'Event start',
-                        timestamp: '2018-04-15'
-                        }, {
-                        content: 'Approved',
-                        timestamp: '2018-04-13'
-                        }, {
-                        content: 'Success',
-                        timestamp: '2018-04-11'
-                    }]
+                doManagement: null
             }
         },
         components: {
-            appHistory: DOHistory
+            appHistory: DOHistory,
+            appHistoryTimeline: DOHistoryTimeline
         },
         created() {
             this.$store.dispatch('findDoById', this.doId)
