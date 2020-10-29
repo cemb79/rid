@@ -5,7 +5,7 @@
         </div>
         <div class="login">
             <el-card>
-                <h2><b>Autenticación</b></h2>
+                <h2 class="justify-center font-bold">Autenticación</h2>
                 <hr>
                 <el-form :model="ruleForm" status-icon ref="ruleForm" :rules="rules" class="login-form">
                     <el-form-item prop="username">
@@ -128,10 +128,5 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    h2 {
-        margin: 20px;
-        text-align: center;
     }
 </style>

@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './routes/routes';
 import axios from 'axios';
 import store from './store/store'
+import './assets/styles/index.css';
 import './factories/script'
 import 'element-ui/lib/theme-chalk/index.css';
 import 'element-ui/lib/theme-chalk/reset.css';

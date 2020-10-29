@@ -7,13 +7,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "tailwind": "postcss src/assets/styles/index.css -o public/css/style.css -w"
   },
   "dependencies": {
+    "autoprefixer": "^9.0.1",
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
     "element-theme": "^2.0.1",
     "element-ui": "^2.13.2",
+    "postcss-cli": "^8.1.0",
+    "tailwindcss": "^1.9.6",
     "vue": "^2.6.11",
     "vue-router": "^3.4.6",
     "vuex": "^3.5.1"
