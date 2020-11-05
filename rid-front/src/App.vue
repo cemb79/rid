@@ -18,7 +18,7 @@
 </script>
     
 <style>
-    body {
+    /* body {
         padding: 30px;
     }
 
@@ -50,6 +50,6 @@
             transform: translateY(-30px);
             opacity: 0;
         }
-    }
+    } */
 </style>
 
