@@ -5,6 +5,7 @@ export default {
     SIGNIN: '/signin',
     USER_FIND_ID: '/user/{0}',
     DELIVERY_ORDER_FIND_CLIENT_PORT: "/deliveryOrders/find/{0}/{1}?page={2}",
+    DELIVERY_ORDER_FIND_CLIENT_MONTH: "/deliveryOrders/find/{0}/month?month={1}&year={2}&page={3}",
     DELIVERY_ORDER_FIND_CLIENT_CRITERIA: "/deliveryOrders/client/{0}?criteria={1}",
     DELIVERY_ORDER_FIND_ID: "/deliveryOrders/find/{0}",
     DELIVERY_ORDER_MANAGEMENT: "/deliveryOrders/management/{0}",

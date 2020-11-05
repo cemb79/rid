@@ -1,5 +1,7 @@
 package com.acolcex.rid.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,5 +78,41 @@ public class ReportController {
 		}
 		
 		return response;
+	}
+	
+	@GetMapping(WebPaths.DELIVERY_ORDER_FIND_CLIENT_MONTH)
+    @ResponseBody
+	public ApiResponse findDoByClientIdAndMonth(@PathVariable String clientId, @RequestParam Integer month, @RequestParam Integer year,
+												@RequestParam(defaultValue = "0") int page,
+	        									@RequestParam(defaultValue = "25") int size) {
+		logger.info("Finding DOs by clientId {} and month {}", clientId, month);
+		ApiResponse response = null;
+		try {
+			Pageable paging = PageRequest.of(page, size);
+			Date runningMonth = getRunningDate(month, year);
+			Page<DeliveryOrder> pageDO = reportService.findDeliveryOrderByMonth(runningMonth, clientId, paging);
+			Map<String, Object> map = new HashMap<>();
+			map.put("content", pageDO.getContent());
+			map.put("totalElements", pageDO.getTotalElements());
+			map.put("totalPages", pageDO.getTotalPages());
+			map.put("currentPage", pageDO.getNumber());
+			return ApiResponse.successResponse(map);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			response = ApiResponse.errorResponse(e.getMessage());
+		}
+		
+		return response;
+	}
+
+	private Date getRunningDate(Integer month, Integer year) {
+		Calendar now = Calendar.getInstance();
+		now.set(Calendar.YEAR, year);
+		now.set(Calendar.MONTH, month);
+		now.set(Calendar.DAY_OF_MONTH, 1);
+		now.set(Calendar.HOUR, 0);
+		now.set(Calendar.MINUTE, 0);
+		now.set(Calendar.SECOND, 0);
+		return now.getTime();
 	}
 }

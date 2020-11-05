@@ -74,6 +74,7 @@ export default new Vuex.Store({
             const expirationDate = localStorage.getItem('expirationDate');
             const now = new Date();
             if(now.getTime() >= expirationDate) {
+                commit('clearAuthData');
                 return;
             }
             const userId = localStorage.getItem('userId');
@@ -110,7 +111,8 @@ export default new Vuex.Store({
                 .catch(error => console.log(error));
         },
         findDoByClientIdAndPortId (context, payload) {
-            let url = Urls.DELIVERY_ORDER_FIND_CLIENT_PORT.format(payload.userId, payload.portId, payload.page);
+            let url = Urls.DELIVERY_ORDER_FIND_CLIENT_PORT.format(payload.userId, payload.parameters.portId, payload.page);
+            console.log(url);
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
             return axios.get(url)
                 .then((response) => {
@@ -155,5 +157,15 @@ export default new Vuex.Store({
                 })
                 .catch((error) => console.log(error));
         },
+        findDoByClientIdAndMonth (context, payload) {
+            var params = payload.parameters;
+            let url = Urls.DELIVERY_ORDER_FIND_CLIENT_MONTH.format(payload.userId, params.month, params.year, payload.page);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
+        }
     }
 });

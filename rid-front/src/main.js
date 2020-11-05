@@ -39,6 +39,8 @@ import {
   MenuItemGroup,
   Table,
   TableColumn,
+  Tabs,
+  TabPane,
   Timeline,
   TimelineItem,} from 'element-ui';
 
@@ -67,6 +69,8 @@ Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Tabs);
+Vue.use(TabPane);
 Vue.use(Timeline);
 Vue.use(TimelineItem);
 Vue.use(Loading.directive);

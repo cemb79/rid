@@ -8,6 +8,7 @@ public final class WebPaths {
 	public static final String DELIVERY_ORDER_FIND_BY_NUM_DO = "/deliveryOrders/find/{numDO}";
 	public static final String DELIVERY_ORDER_FIND_CLIENT_CRITERIA = "/deliveryOrders/client/{clientId}";
 	public static final String DELIVERY_ORDER_FIND_CLIENT_PORT = "/deliveryOrders/find/{clientId}/{portId}";
+	public static final String DELIVERY_ORDER_FIND_CLIENT_MONTH = "/deliveryOrders/find/{clientId}/month";
 	public static final String DELIVERY_ORDER_FIND_USER = "/deliveryOrders/find/user/{userId}";
 	public static final String DELIVERY_ORDER_MANAGEMENT = "/deliveryOrders/management/{numDO}";
 	public static final String DELIVERY_ORDER_HISTORY = "/deliveryOrders/history/{numDO}";

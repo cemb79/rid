@@ -1,6 +1,6 @@
 <template>
     <el-card>
-        <h2>Puerto {{ port }}</h2>
+        <h2>{{ reportTitle }}</h2>
         <el-row>
             <el-table :data="doData" height="750" stripe @row-click="selectRow" v-loading="loading">
                 <el-table-column
@@ -64,6 +64,7 @@
     import { mapGetters } from "vuex";
 
     export default {
+        props: ['repKey', 'title', 'parameters'],
         data() {
             return {
                 doData: [],
@@ -71,7 +72,13 @@
                 currentPage: 0,
                 totalElements: 0,
                 port: '',
-                loading: true
+                loading: true,
+                reportKey: this.repKey,
+                reportTitle: this.title,
+                reportParameters: this.parameters,
+                reports: [{key: 'PORT', reportName: 'findDoByClientIdAndPortId'},
+                          {key: 'MONTH', reportName: 'findDoByClientIdAndMonth'},
+                         ]
             }
         },
         computed: {
@@ -79,6 +86,15 @@
         },
         created() {
             this.port = this.$route.params.portId;
+            if(!this.reportKey) {
+                this.reportKey = this.$route.query.reportKey;
+            }
+            if(!this.reportTitle) {
+                this.reportTitle = this.$route.query.title;
+            }
+            if(!this.reportParameters) {
+                this.reportParameters = {portId: this.port}
+            }
             this.fetchData(1);
         },
         methods: {
@@ -108,9 +124,10 @@
                 this.loading = true;
                 pageNum = pageNum - 1;
                 const payload = {userId: this.getUserId, 
-                                portId:this.port,
+                                parameters: this.reportParameters,
                                 page: pageNum }
-                this.$store.dispatch('findDoByClientIdAndPortId', payload)
+                const report = this.getReportName();
+                this.$store.dispatch(report, payload)
                     .then(res => {
                         this.totalPages = res.data.data.totalPages;
                         this.doData = res.data.data.content;
@@ -125,6 +142,14 @@
             },
             selectRow(row) {
                 this.$router.push({ name: 'DODetail', params: { doId: row.noDO } });
+            },
+            getReportName() {
+                var resp = ''
+                const val = this.reports.find(element => element.key === this.reportKey);
+                if(val !== null) {
+                    resp = val.reportName;
+                }
+                return resp;
             }
         }
     }

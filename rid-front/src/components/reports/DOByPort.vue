@@ -41,7 +41,11 @@
         },
         methods: {
             selectRow(row) {
-                this.$router.push({name: 'DOListPort', params: { portId: row.port }});
+                this.$router.push({name: 'DOListPort', 
+                    params: { portId: row.port }, 
+                    query: {title: 'DO por puerto ' + row.portName, 
+                            reportKey: 'PORT',
+                            parameters: row.port} });
             }
         },
         created() {

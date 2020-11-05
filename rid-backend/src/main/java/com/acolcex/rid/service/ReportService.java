@@ -1,5 +1,6 @@
 package com.acolcex.rid.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -13,4 +14,6 @@ public interface ReportService {
 	public List<DeliveryOrderCityDTO> findViewDeliveryOrderGroupByCity(String userId);
 	
 	public Page<DeliveryOrder> findDeliveryOrderByPort(String port, String userId, Pageable pageable);
+	
+	public Page<DeliveryOrder> findDeliveryOrderByMonth(Date date, String userId, Pageable pageable);
 }

@@ -1,5 +1,6 @@
 package com.acolcex.rid.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,6 +37,13 @@ public class ReportServiceImpl implements ReportService {
 	@Override
 	public Page<DeliveryOrder> findDeliveryOrderByPort(String port, String clientId, Pageable pageable) {
 		Page<DeliveryOrder> page = doRepository.findByPortIdAndClientId(port, clientId, pageable);
+		logger.debug("Retrieving page {} of ", page.getNumber(), page.getTotalPages());
+		return page;
+	}
+
+	@Override
+	public Page<DeliveryOrder> findDeliveryOrderByMonth(Date date, String userId, Pageable pageable) {
+		Page<DeliveryOrder> page = doRepository.findByPortIdAndRunningMonth(date, userId, pageable);
 		logger.debug("Retrieving page {} of ", page.getNumber(), page.getTotalPages());
 		return page;
 	}
