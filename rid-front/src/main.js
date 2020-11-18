@@ -11,6 +11,8 @@ import 'element-ui/lib/theme-chalk/reset.css';
 import lang from 'element-ui/lib/locale/lang/es'
 import locale from 'element-ui/lib/locale'
 
+import Chart from 'primevue/chart';
+
 import {
   Aside,
   Autocomplete,
@@ -74,6 +76,8 @@ Vue.use(TabPane);
 Vue.use(Timeline);
 Vue.use(TimelineItem);
 Vue.use(Loading.directive);
+
+Vue.component('Chart', Chart);
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;

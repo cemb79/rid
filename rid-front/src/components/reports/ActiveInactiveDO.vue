@@ -1,21 +1,10 @@
 <template>
     <el-card>
         <div class="panel-heading">
-            <h4>Historial DO</h4>
+            <h4>DOs Activos/Inactivos</h4>
         </div>
         <div class="panel-body">
-            <el-table :data="activeDOs">
-                <el-table-column
-                    prop="active"
-                    label="Activos"
-                    width="180">
-                </el-table-column>
-                <el-table-column
-                    prop="inactive"
-                    label="Inactivo"
-                    width="180">
-                </el-table-column>
-            </el-table>
+            <Chart type="doughnut" :data="chartData" />
         </div>
     </el-card>
 </template>
@@ -24,7 +13,23 @@
     export default {
         data() {
             return {
-                activeDOs: [{ active: 20, inactive:5 }]
+                activeDOs: [{ active: 20, inactive:5 }],
+                chartData: {
+                    labels: ['Activos', 'Inactivos'],
+                    datasets: [
+                        {
+                            data: [20, 5],
+                            backgroundColor: [
+                                "#42A5F5",
+                                "#66BB6A"
+                            ],
+                            hoverBackgroundColor: [
+                                "#64B5F6",
+                                "#81C784"
+                            ]
+                        }
+                    ]
+                }
             }
         }
     }

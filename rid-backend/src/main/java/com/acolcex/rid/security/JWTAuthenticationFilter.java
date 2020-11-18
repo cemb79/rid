@@ -56,7 +56,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             FilterChain chain,
                                             Authentication auth) throws IOException, ServletException {
 
-    	Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
+    	Date expirationDate = new Date(System.currentTimeMillis() + (EXPIRATION_TIME * 100));
     	User user = (User) auth.getPrincipal();
         String token = JWT.create()
                 .withSubject(user.getUsername())

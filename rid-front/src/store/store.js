@@ -35,6 +35,9 @@ export default new Vuex.Store({
         clearAuthData (state) {
             state.tokenId = null
             state.userId = null
+            localStorage.removeItem('tokenId')
+            localStorage.removeItem('userId')
+            localStorage.removeItem('expirationDate')
         },
         storeUser (state, user) {
             state.user = user
@@ -49,10 +52,10 @@ export default new Vuex.Store({
         login ({commit, dispatch}, authData) {
             return axios.post(Urls.LOGIN, {username: authData.username, password: authData.password})
                 .then(result => {
-                    //console.log('Login result', result);
                     const now = new Date();
-                    const expirationDate = new Date(now.getTime() + result.data.data.expirationTime * 1000);
-                    console.log(result.data.data.expirationTime, expirationDate)
+                    var expirationTime = now.getTime() + (result.data.data.expirationTime * 100);
+                    console.log(expirationTime);
+                    const expirationDate = new Date(expirationTime);
                     localStorage.setItem('tokenId', result.data.data.idToken);
                     localStorage.setItem('userId', authData.username);
                     localStorage.setItem('expirationDate', expirationDate);
@@ -72,21 +75,23 @@ export default new Vuex.Store({
                 return;
             }
             const expirationDate = localStorage.getItem('expirationDate');
+            if(!expirationDate) {
+                return;
+            }
+            var expDate = new Date(expirationDate);
             const now = new Date();
-            if(now.getTime() >= expirationDate) {
+            if(now.getTime() >= expDate.getTime()) {
+                console.log('Expired auth data')
                 commit('clearAuthData');
                 return;
             }
             const userId = localStorage.getItem('userId');
-            console.log(token, userId)
+            console.log('Auto login user ', userId)
             commit('authUser', {token: token, userId: userId})
         },
         logout ({commit}) {
             commit('clearAuthData')
             console.log('Loging out')
-            localStorage.removeItem('tokenId')
-            localStorage.removeItem('userId')
-            localStorage.removeItem('expirationDate')
             router.replace(Urls.HOME)
         },
         getDosByCity (context, userId) {
@@ -106,7 +111,6 @@ export default new Vuex.Store({
                 .then(result => {
                     const res = result.data.data
                     commit('storeUser', res)
-                    console.log('User stored', res);
                 })
                 .catch(error => console.log(error));
         },

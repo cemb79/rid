@@ -62,6 +62,7 @@
                         -->
                         <div v-if="showProfile" class="origin-top-right absolute right-0 my-3 w-56 rounded-md shadow-lg">
                             <div class="py-1 rounded-md bg-white shadow-xs" role="menu" >
+                                <button class="block px-4 py-2 leading-5 text-gray-700 no-underline hover:no-underline hover:bg-gray-100 focus:no-underline focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">{{username}}</button>
                                 <button @click="logout" class="block px-4 py-2 leading-5 text-gray-700 no-underline hover:no-underline hover:bg-gray-100 focus:no-underline focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out" role="menuitem">Salir</button>
                             </div>
                         </div>
@@ -96,6 +97,11 @@
         methods: {
             logout() {
                 this.$store.dispatch('logout')
+            }
+        },
+        computed: {
+            username() {
+                return this.$store.state.userId
             }
         }
     }

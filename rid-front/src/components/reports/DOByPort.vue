@@ -1,5 +1,5 @@
 <template>
-    <div class="panel panel-default panel-success">
+    <div>
         <el-card>
             <div class="panel-heading">
                 <h4>DO Activos por Puerto</h4>
