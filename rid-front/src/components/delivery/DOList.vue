@@ -50,7 +50,7 @@
         <el-row>
             <el-pagination
                 layout="prev, pager, next"
-                :page-size="25"
+                :page-size="pageSize"
                 :total="totalElements"
                 @next-click="nextPage"
                 @prev-click="previousPage"
@@ -71,6 +71,7 @@
                 totalPages: 0, 
                 currentPage: 0,
                 totalElements: 0,
+                pageSize: 25,
                 port: '',
                 loading: true,
                 reportKey: this.repKey,

@@ -1,11 +1,7 @@
 <template>
-    <!--
-    Tailwind UI components require Tailwind CSS v1.8 and the @tailwindcss/ui plugin.
-    Read the documentation to get started: https://tailwindui.com/documentation
-    -->
     <nav class="bg-primary">
-        <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-            <div class="relative flex items-center justify-between h-24">
+        <div class="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
+            <div class="relative flex items-center justify-between h-20">
                 <div class="absolute inset-y-0 left-0 flex items-center md:hidden">
                     <!-- Mobile menu button-->
                     <button @click="isExpand = !isExpand" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out">
@@ -19,12 +15,12 @@
                 </div>
             
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
-                    <div class="flex">
-                        <img class="block md:hidden h-12 w-auto" src="../assets/Acolcex.png" alt="Workflow logo">
-                        <img class="lg:block h-12 w-56" src="../assets/Acolcex-full.svg" alt="Workflow logo">
+                    <div class="flex flex-shrink-0 items-center">
+                        <img class="sm:block lg:hidden h-12 w-auto" src="../assets/Acolcex.png" alt="Acolcex logo">
+                        <img class="hidden lg:block h-12 w-56" src="../assets/Acolcex-full.svg" alt="Acolcex logo">
                     </div>
-                    <div class="lg:block sm:ml-6">
-                        <div class="flex">
+                    <div class="hidden lg:block sm:ml-6">
+                        <div class="flex space-x-4">
                             <router-link :to="{name: 'Home'}" class="px-4 py-4 rounded-md font-medium leading-5 text-secondary bg-blue-800 no-underline hover:no-underline focus:no-underline focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
                                 active-class="active">
                                 Dashboard
@@ -47,7 +43,7 @@
                     <div class="ml-3 relative">
                         <div>
                             <button @click="showProfile = !showProfile" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-white transition duration-150 ease-in-out" id="user-menu" aria-label="User menu" aria-haspopup="true">
-                                <img class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                                <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
                             </button>
                         </div>
                         <!--

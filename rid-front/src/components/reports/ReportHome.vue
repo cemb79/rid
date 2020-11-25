@@ -1,8 +1,8 @@
 <template>
     <div>
         <h1>Reportes</h1>
-        <hr>
-        <el-tabs tab-position="left" style="height: 500px;" @tab-click="selectTab">
+        <hr class="py-2">
+        <el-tabs tab-position="left" @tab-click="selectTab">
             <el-tab-pane v-for="(item) in tabs" :key="item.key" :label="item.month">
                 <app-do-list v-if="item.isVisible" :repKey="reportKey" :title="'DO por mes ' + item.month + ' ' + item.date.getFullYear()"
                     :parameters="{month: item.date.getMonth(), year: item.date.getFullYear()}"></app-do-list>

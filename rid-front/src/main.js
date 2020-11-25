@@ -6,8 +6,8 @@ import axios from 'axios';
 import store from './store/store'
 import './assets/styles/index.css';
 import './factories/script'
-import 'element-ui/lib/theme-chalk/index.css';
-import 'element-ui/lib/theme-chalk/reset.css';
+//import 'element-ui/lib/theme-chalk/index.css';
+//import 'element-ui/lib/theme-chalk/reset.css';
 import lang from 'element-ui/lib/locale/lang/es'
 import locale from 'element-ui/lib/locale'
 

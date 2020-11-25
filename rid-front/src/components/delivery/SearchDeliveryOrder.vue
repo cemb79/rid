@@ -1,27 +1,19 @@
 <template>
     <div>
-        <h1>Buscar</h1>
-        <el-row>
-            <el-form :inline="true">
-                <el-form-item>
-                    <el-autocomplete
-                        class="inline-input"
-                        v-model="criteria"
-                        placeholder="Número DO, Documento transporte o número de pedido"
-                        prefix-icon="el-icon-search"
-                        :fetch-suggestions="querySearchAsync"
-                        :trigger-on-focus="false"
-                        @select="handleSelect"
-                    >
-                    </el-autocomplete>
-                </el-form-item>
-                <!-- <el-form-item>
-                    <el-button type="primary">Buscar</el-button>
-                </el-form-item> -->
-            </el-form>
-        </el-row>
-        <el-row>
-            <el-divider></el-divider>
+        <h1>Buscar DO</h1>
+        <div class="pt-2 pb-4 w-full">
+            <el-autocomplete
+                v-model="criteria"
+                placeholder="Número DO, Documento transporte o número de pedido"
+                prefix-icon="el-icon-search"
+                :fetch-suggestions="querySearchAsync"
+                :trigger-on-focus="false"
+                @select="handleSelect"
+            >
+            </el-autocomplete>
+        </div>
+        <hr>
+        <div class="pt-4">
             <el-card v-if="doContent.length > 0">
                 <el-table :data="doContent" height="350" stripe @row-click="selectRow">
                     <el-table-column
@@ -68,7 +60,7 @@
                     </el-table-column> 
                 </el-table>
             </el-card>
-        </el-row>
+        </div>
     </div>
 </template>
 
@@ -131,3 +123,9 @@
         }
     };
 </script>
+ 
+<style scoped>
+    .el-autocomplete {
+        width: 50%;
+    }
+</style>

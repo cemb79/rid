@@ -4,21 +4,21 @@
             <!-- <app-header></app-header> -->
             <app-navbar></app-navbar>
         </header>
-        <main class="mx-10 mt-10 h-auto">
-            <h1 class="text-center">{{ name }}<br><small>NIT/COD.: {{ userId }}</small></h1>
-            <hr>
+        <main class="mx-10 mt-10">
+            <h1 class="text-center text-xl pb-2">{{ name }}<br><small>NIT/COD.: {{ userId }}</small></h1>
+            <hr class="py-3">
             <transition name="el-fade-in-linear">
                 <router-view></router-view>
             </transition>
         </main>
         <footer class="w-auto bg-primary ">
-            <div class="md:flex md:flex-row-reverse justify-around">
+            <!--<div class="md:flex md:flex-row-reverse justify-around">
                 <ul class="flex mt-4 mb-4 ml-4">
                     <li class="mx-10">Soporte</li>
                     <li class="mx-10">Acerca de nosotros</li>
                     <li class="mx-10">Aviso de privacidad</li>
                 </ul>
-            </div>
+            </div>-->
         </footer>
     </div>
 </template>
@@ -54,8 +54,5 @@
 </script>
 
 <style scoped>
-    .el-aside {
-        min-height: 100vh;
-        background-color: #112773;
-    }
+
 </style>

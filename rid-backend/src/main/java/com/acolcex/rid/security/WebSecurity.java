@@ -18,7 +18,8 @@ import com.acolcex.rid.service.AuthenticateService;
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 
-	private static final String[] ALLOWED_RESOURCES = {"/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js"};
+	private static final String[] ALLOWED_RESOURCES = {"/", "/error", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", 
+														"/**/*.html", "/**/*.css", "/**/*.js", "/**/*.js.map", "/font", "/**/*.woff", "**/*.ttf"};
 	private AuthenticateService userDetailsService;
 	private NoPasswordEncoder noOpPasswordEncoder;
 	
