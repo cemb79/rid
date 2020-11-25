@@ -1,12 +1,12 @@
 <template>
-    <div>
-        <div class="header">
+    <div class="flex-row">
+        <div class="mt-4 flex justify-center">
             <img src="../../assets/Acolcex.png" class="center" width="60" height="60">
         </div>
-        <div class="login">
+        <div class="flex flex-1 justify-center pt-4">
             <el-card>
-                <h2 class="justify-center font-bold">Autenticación</h2>
-                <hr>
+                <h1 class="flex justify-center font-bold text-2xl pb-4">Autenticación</h1>
+                <hr class="py-4">
                 <el-form :model="ruleForm" status-icon ref="ruleForm" :rules="rules" class="login-form">
                     <el-form-item prop="username">
                         <el-input type="text" v-model="ruleForm.username" autocomplete="off" placeholder="Usuario" prefix-icon="el-icon-user"></el-input>

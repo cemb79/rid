@@ -25,7 +25,9 @@ public class DeliveryOrder {
 	private String noDO;
 	private Date fechaRegistro;
 	private String tipoOperacion;
-	private String codEstadoDO;
+	@ManyToOne
+	@JoinColumn(name = "codEstadoDO")
+	private Status status;
 	@Column(name = "UsuarioID")
 	private String userId;
 	//@ManyToOne
@@ -87,11 +89,11 @@ public class DeliveryOrder {
 	public void setTipoOperacion(String tipoOperacion) {
 		this.tipoOperacion = tipoOperacion;
 	}
-	public String getCodEstadoDO() {
-		return codEstadoDO;
+	public Status getStatus() {
+		return status;
 	}
-	public void setCodEstadoDO(String codEstadoDO) {
-		this.codEstadoDO = codEstadoDO;
+	public void setStatus(Status status) {
+		this.status = status;
 	}
 	public String getUserId() {
 		return userId;

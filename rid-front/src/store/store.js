@@ -170,6 +170,15 @@ export default new Vuex.Store({
                     return response
                 })
                 .catch((error) => console.log(error));
+        },
+        findDoByClientGropByStatus (context, userId) {
+            let url = Urls.DELIVERY_ORDER_FIND_CLIENT_STATUS.format(userId);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
         }
     }
 });

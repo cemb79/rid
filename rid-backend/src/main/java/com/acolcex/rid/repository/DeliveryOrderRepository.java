@@ -19,7 +19,8 @@ public interface DeliveryOrderRepository extends JpaRepository<DeliveryOrder, In
 	
 	public Page<DeliveryOrder> findByPortIdAndClientId(String portId, String clientId, Pageable pageable);
 	
-	public Page<DeliveryOrder> findByClientIdAndDocTransporteContainingOrNoDOContainingOrNoPedidoContaining(String clientId, String docTran, String noDo, String noPedido, Pageable pageable);
+	@Query(value = "select * from do where codCliente = ?1 and (DocTransporte like %?2% or NoDO like %?2% or NoPedido like %?2%)", nativeQuery = true)
+	public Page<DeliveryOrder> searchByClientIdAndCriteria(String clientId, String criteria, Pageable pageable);
 	
 	@Query(value = "select do.* from do, usuariosRid u where do.codCliente = u.UsuarioID and CodCliente = ?2 and do.FechaRegistro between ?1 and DATEADD(month, 1, ?1)", nativeQuery = true)
 	public Page<DeliveryOrder> findByPortIdAndRunningMonth(Date date, String clientId, Pageable pageable);

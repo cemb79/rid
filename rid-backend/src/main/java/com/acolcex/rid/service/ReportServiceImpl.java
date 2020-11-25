@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.acolcex.rid.model.DeliveryOrder;
 import com.acolcex.rid.model.dto.DeliveryOrderCityDTO;
+import com.acolcex.rid.model.dto.DeliveryOrderStatusDTO;
 import com.acolcex.rid.repository.DeliveryOrderRepository;
 import com.acolcex.rid.repository.ReportRepository;
 
@@ -46,5 +47,10 @@ public class ReportServiceImpl implements ReportService {
 		Page<DeliveryOrder> page = doRepository.findByPortIdAndRunningMonth(date, userId, pageable);
 		logger.debug("Retrieving page {} of ", page.getNumber(), page.getTotalPages());
 		return page;
+	}
+	
+	@Override
+	public List<DeliveryOrderStatusDTO> getDeliveryOrderStatusCount(String userId) {
+		return reportRepository.getDeliveryOrderStatusCount(userId);
 	}
 }

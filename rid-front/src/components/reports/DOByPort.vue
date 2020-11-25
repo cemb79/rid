@@ -31,11 +31,7 @@
     export default {
         data() {
             return {
-                dosByCity: [
-                    /*{port: 'CTG', portName: 'Cartagena', numDO: 5},
-                    {port: 'BOG', numDO: 10},
-                    {port: 'MDE', numDO: 7}*/
-                ],
+                dosByCity: [],
                 userId: ''
             }
         },

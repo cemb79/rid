@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.acolcex.rid.controller.util.ApiResponse;
 import com.acolcex.rid.model.DeliveryOrder;
 import com.acolcex.rid.model.dto.DeliveryOrderCityDTO;
+import com.acolcex.rid.model.dto.DeliveryOrderStatusDTO;
 import com.acolcex.rid.service.ReportService;
 
 @Controller
@@ -114,5 +115,13 @@ public class ReportController {
 		now.set(Calendar.MINUTE, 0);
 		now.set(Calendar.SECOND, 0);
 		return now.getTime();
+	}
+	
+	@GetMapping(WebPaths.DELIVERY_ORDER_FIND_CLIENT_STATUS)
+    @ResponseBody
+	public ApiResponse getDeliveryOrderStatusCount(@PathVariable String clientId) {
+		logger.info("Getting DOs group by status. clientId: {}", clientId);
+		List<DeliveryOrderStatusDTO> dos = reportService.getDeliveryOrderStatusCount(clientId);
+		return ApiResponse.successResponse(dos);
 	}
 }

@@ -104,7 +104,7 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	public Page<DeliveryOrder> findDOByCriteria(String userId, String criteria, Pageable pageable) {
 		Page<DeliveryOrder> page = Page.empty();
 		if(!StringUtils.isEmpty(criteria)) {
-			page = deliveryRepository.findByClientIdAndDocTransporteContainingOrNoDOContainingOrNoPedidoContaining(userId, criteria, criteria, criteria, pageable);
+			page = deliveryRepository.searchByClientIdAndCriteria(userId, criteria, pageable);
 		}
 		return page;
 	}
