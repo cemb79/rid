@@ -4,7 +4,7 @@
             <!-- <app-header></app-header> -->
             <app-navbar></app-navbar>
         </header>
-        <main class="mx-10 mt-10">
+        <main class="mt-6 mx-2 lg:mx-10">
             <h1 class="text-center text-xl pb-2">{{ name }}<br><small>NIT/COD.: {{ userId }}</small></h1>
             <hr class="py-3">
             <transition name="el-fade-in-linear">
