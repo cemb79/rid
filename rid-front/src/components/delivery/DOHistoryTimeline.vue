@@ -6,7 +6,9 @@
             placement="top">
             {{activity.operationState.nombreEstOpeDO}}
             <el-card v-if="activity.observaciones">
-                <h4>Observaciones</h4>
+                <div slot="header">
+                    <h4 class="font-bold">Observaciones</h4>
+                </div>
                 <p>{{ activity.observaciones }}</p>
             </el-card>
         </el-timeline-item>

@@ -16,8 +16,8 @@
             
                 <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                     <div class="flex flex-shrink-0 items-center">
-                        <img class="sm:block lg:hidden h-12 w-auto" src="../assets/Acolcex.png" alt="Acolcex logo">
-                        <img class="hidden lg:block h-12 w-56" src="../assets/Acolcex-full.svg" alt="Acolcex logo">
+                        <img class="sm:block lg:hidden h-12 w-auto" src="../assets/Acolcex-white.png" alt="Acolcex logo">
+                        <img class="hidden lg:block h-12 w-56" src="../assets/Acolcex-full.png" alt="Acolcex logo">
                     </div>
                     <div class="hidden lg:block sm:ml-6">
                         <div class="flex space-x-4">

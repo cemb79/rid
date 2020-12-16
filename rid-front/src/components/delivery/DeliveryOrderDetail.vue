@@ -47,7 +47,7 @@
         <hr class="pb-3">
         <el-row>
             <el-col :span="12">
-                <h1>Indicadores</h1>
+                <h1 class="py-3">Indicadores</h1>
                 <app-history-timeline :doId="deliveryOrder.noDO"></app-history-timeline>
             </el-col>
             <!--<el-col :span="12">
