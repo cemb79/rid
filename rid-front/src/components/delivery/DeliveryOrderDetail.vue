@@ -40,7 +40,7 @@
         </el-row>
         <el-row :gutter="10">
             <el-col :span="4">
-                <span>Observaciones</span>
+                <span class="text-blue-800 font-bold">Observaciones</span>
             </el-col>
             <el-col :span="4">{{deliveryOrder.descripcionMercancia}}</el-col>
         </el-row>
@@ -102,7 +102,8 @@
             trimPrefix(value) {
                 if(!value)
                     return '';
-                return value.substring(3)
+                var pattern = new RegExp('[0-9]{3}');
+                return pattern.test(value) ? value.substring(3) : value;
             }
         },
         computed: {

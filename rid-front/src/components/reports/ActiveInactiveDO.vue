@@ -41,7 +41,13 @@
                     for(var i = 0; i < this.doStatusList.length; i++) {
                         if(this.doStatusList[i].status !== 'INA'){
                             var nameStr = this.doStatusList[i].name;
-                            labels.push(nameStr.substring(3))
+                            var pattern = new RegExp('[0-9]{3}');
+                            var result = pattern.test(nameStr);
+                            if (result === true) {
+                                labels.push(nameStr.substring(3))
+                            } else {
+                                labels.push(nameStr)
+                            }
                             this.chartData.datasets[0].data.push(this.doStatusList[i].numStatus);
                             this.chartData.datasets[0].backgroundColor.push(this.backgroundColor[i]);
                             this.chartData.datasets[0].hoverBackgroundColor.push(this.hoverColor[i]);
