@@ -47,12 +47,14 @@ public class DeliveryOrder {
 	private String manifiesto;
 	private Date manifiestoFecha;
 	private String manifiestoVencimiento;
-	private String codEmpRefiere;
 	private String codTerminoNegociacion;
 	private String codMoneda;
 	private BigDecimal valor;
 	private String observaciones;
 	private String descripcionMercancia;
+	private String mercanciaSerial;
+	private String declaracionAnticipada;
+	private String inspeccionPrevia;
 	private String usuarioIDStamp;
 	private Date dateStamp;
 	@ManyToOne
@@ -179,12 +181,6 @@ public class DeliveryOrder {
 	public void setManifiestoVencimiento(String manifiestoVencimiento) {
 		this.manifiestoVencimiento = manifiestoVencimiento;
 	}
-	public String getCodEmpRefiere() {
-		return codEmpRefiere;
-	}
-	public void setCodEmpRefiere(String codEmpRefiere) {
-		this.codEmpRefiere = codEmpRefiere;
-	}
 	public String getCodTerminoNegociacion() {
 		return codTerminoNegociacion;
 	}
@@ -208,6 +204,24 @@ public class DeliveryOrder {
 	}
 	public void setObservaciones(String observaciones) {
 		this.observaciones = observaciones;
+	}
+	public String getMercanciaSerial() {
+		return mercanciaSerial;
+	}
+	public void setMercanciaSerial(String mercanciaSerial) {
+		this.mercanciaSerial = mercanciaSerial;
+	}
+	public String getDeclaracionAnticipada() {
+		return declaracionAnticipada;
+	}
+	public void setDeclaracionAnticipada(String declaracionAnticipada) {
+		this.declaracionAnticipada = declaracionAnticipada;
+	}
+	public String getInspeccionPrevia() {
+		return inspeccionPrevia;
+	}
+	public void setInspeccionPrevia(String inspeccionPrevia) {
+		this.inspeccionPrevia = inspeccionPrevia;
 	}
 	public String getDescripcionMercancia() {
 		return descripcionMercancia;
@@ -264,5 +278,4 @@ public class DeliveryOrder {
 			return false;
 		return true;
 	}
-	
 }
