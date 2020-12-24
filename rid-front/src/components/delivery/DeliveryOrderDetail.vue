@@ -78,6 +78,7 @@
         created() {
             this.$store.dispatch('findDoById', this.doId)
                 .then(res => {
+                    console.log('findDoById', res);
                     this.deliveryOrder = res.data.data;
                 })
                 .catch(err => {
@@ -86,7 +87,7 @@
             
             this.$store.dispatch('findDOManagement', this.doId)
                 .then(res => {
-                    console.log(res.data.data);
+                    console.log('findDOManagement', res.data.data);
                     this.doManagement = res.data.data;
                 })
                 .catch(err => {

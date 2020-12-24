@@ -46,8 +46,8 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	}
 	
 	@Override
-	public DeliveryOrder findById(Integer id) throws ServiceException {
-		Optional<DeliveryOrder> order = deliveryRepository.findByNoDO(id.toString());
+	public DeliveryOrder findById(String id) throws ServiceException {
+		Optional<DeliveryOrder> order = deliveryRepository.findByNoDO(id);
 		try {
 			return order.get();
 		} catch (Exception e) {
@@ -67,7 +67,7 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	}
 
 	@Override
-	public void deleteById(Integer id) {
+	public void deleteById(String id) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -85,7 +85,7 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 		try {
 			return result.get();
 		} catch (NoSuchElementException e) {
-			return null;
+			return new DeliveryOrderManagement();
 		} catch (Exception e) {
 			throw new ServiceException(e.getMessage(), e);
 		}

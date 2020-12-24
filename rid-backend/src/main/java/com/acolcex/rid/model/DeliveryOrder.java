@@ -18,7 +18,7 @@ public class DeliveryOrder {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer regDO;
+	private String regDO;
 	@ManyToOne
 	@JoinColumn(name = "CodSucursal")
 	private Office office;
@@ -61,10 +61,10 @@ public class DeliveryOrder {
 	@JoinColumn(name = "codMercancia")
 	private Goods goods;
 	
-	public Integer getRegDO() {
+	public String getRegDO() {
 		return regDO;
 	}
-	public void setRegDO(Integer regDO) {
+	public void setRegDO(String regDO) {
 		this.regDO = regDO;
 	}
 	public Office getOffice() {

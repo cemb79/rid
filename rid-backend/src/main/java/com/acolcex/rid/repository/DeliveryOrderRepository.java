@@ -17,7 +17,7 @@ public interface DeliveryOrderRepository extends JpaRepository<DeliveryOrder, In
 	
 	public Set<DeliveryOrder> findByUserId(String userId);
 	
-	@Query(value = "select * from DO where codPuerto = ?1 and codCliente = ?2 and  codEstadoDO = 'ACT'", nativeQuery = true)
+	@Query(value = "select * from DO where codPuerto = ?1 and codCliente = ?2 and codEstadoDO = 'ACT'", nativeQuery = true)
 	public Page<DeliveryOrder> findByPortIdAndClientId(String portId, String clientId, Pageable pageable);
 	
 	@Query(value = "select * from do where codCliente = ?1 and (DocTransporte like %?2% or NoDO like %?2% or NoPedido like %?2%)", nativeQuery = true)

@@ -19,10 +19,10 @@ public class DeliveryOrderManagement {
 	private Date fecCierre;
 	private Date fecInsPreIni;
 	private Date horInsPreIni;
-	private Date obsInsPreIni;
+	private String obsInsPreIni;
 	private Date fecInsPreFin;
 	private Date horInsPreFin;
-	private Date obsInsPreFin;
+	private String obsInsPreFin;
 	private Date fecAce;
 	private Date horAce;
 	private Date fecAut;
@@ -49,8 +49,9 @@ public class DeliveryOrderManagement {
 	private Date horRetMer;
 	private Date fecEntMer;
 	private Date horEntMer;
-	private Date usuarioIDStamp;
+	private String usuarioIDStamp;
 	private Date dateStamp;
+	private Integer noDeclaraciones;
 	
 	public String getNoDO() {
 		return noDO;
@@ -100,10 +101,10 @@ public class DeliveryOrderManagement {
 	public void setHorInsPreIni(Date horInsPreIni) {
 		this.horInsPreIni = horInsPreIni;
 	}
-	public Date getObsInsPreIni() {
+	public String getObsInsPreIni() {
 		return obsInsPreIni;
 	}
-	public void setObsInsPreIni(Date obsInsPreIni) {
+	public void setObsInsPreIni(String obsInsPreIni) {
 		this.obsInsPreIni = obsInsPreIni;
 	}
 	public Date getFecInsPreFin() {
@@ -118,10 +119,10 @@ public class DeliveryOrderManagement {
 	public void setHorInsPreFin(Date horInsPreFin) {
 		this.horInsPreFin = horInsPreFin;
 	}
-	public Date getObsInsPreFin() {
+	public String getObsInsPreFin() {
 		return obsInsPreFin;
 	}
-	public void setObsInsPreFin(Date obsInsPreFin) {
+	public void setObsInsPreFin(String obsInsPreFin) {
 		this.obsInsPreFin = obsInsPreFin;
 	}
 	public Date getFecAce() {
@@ -280,10 +281,10 @@ public class DeliveryOrderManagement {
 	public void setHorEntMer(Date horEntMer) {
 		this.horEntMer = horEntMer;
 	}
-	public Date getUsuarioIDStamp() {
+	public String getUsuarioIDStamp() {
 		return usuarioIDStamp;
 	}
-	public void setUsuarioIDStamp(Date usuarioIDStamp) {
+	public void setUsuarioIDStamp(String usuarioIDStamp) {
 		this.usuarioIDStamp = usuarioIDStamp;
 	}
 	public Date getDateStamp() {
@@ -291,6 +292,12 @@ public class DeliveryOrderManagement {
 	}
 	public void setDateStamp(Date dateStamp) {
 		this.dateStamp = dateStamp;
+	}
+	public Integer getNoDeclaraciones() {
+		return noDeclaraciones;
+	}
+	public void setNoDeclaraciones(Integer noDeclaraciones) {
+		this.noDeclaraciones = noDeclaraciones;
 	}
 	
 	@Override

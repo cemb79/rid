@@ -23,7 +23,7 @@
                         <div class="flex space-x-4">
                             <router-link :to="{name: 'Home'}" class="px-4 py-4 rounded-md font-medium leading-5 text-secondary bg-blue-800 no-underline hover:no-underline focus:no-underline focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out"
                                 active-class="active">
-                                Dashboard
+                                Inicio
                             </router-link>
                             <router-link :to="{name: 'SearchDO'}" class="ml-5 px-4 py-4 rounded-md font-medium leading-5 text-secondary no-underline hover:no-underline hover:text-white hover:bg-gray-700 focus:no-underline focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Buscar</router-link>
                             <router-link :to="{name: 'ReportHome'}" class="ml-5 px-4 py-4 rounded-md font-medium leading-5 text-secondary no-underline hover:no-underline hover:text-white hover:bg-gray-700 focus:no-underline focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Reportes</router-link>
@@ -75,7 +75,7 @@
         -->
         <div v-if="isExpand" class="md:hidden">
             <div class="px-2 pt-2 pb-3">
-                <router-link :to="{name: 'Home'}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Dashboard</router-link>
+                <router-link :to="{name: 'Home'}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Inicio</router-link>
                 <router-link :to="{name: 'SearchDO'}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Buscar</router-link>
                 <router-link :to="{name: 'ReportHome'}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out">Reportes</router-link>
             </div>

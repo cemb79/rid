@@ -27,16 +27,17 @@ public class ReportRepositoryImpl implements ReportRepository {
     
 	@Override
 	public List<DeliveryOrderCityDTO> findViewDeliveryOrderGroupByCity(String userId) {
-		String sql = "select do.codPuerto as port, \r\n" + 
-				"	   case when len(ltrim(rtrim(nombrePuerto))) = 0 then 'Desconocido' else ltrim(rtrim(nombrePuerto)) end as port_name, \r\n" + 
-				"	   count(do.codPuerto) as num_do\r\n" + 
-				"  from do,\r\n" + 
-				"       usuariosRid u,\r\n" + 
-				"       Puertos p\r\n" + 
-				" where do.codCliente = u.UsuarioID\r\n" + 
-				"   and u.UsuarioID = ?\r\n" + 
-				"   and do.codPuerto = p.CodPuerto\r\n" + 
-				" group by do.codPuerto, p.NombrePuerto";
+		String sql = "select do.codPuerto as port,\n"
+				+ "          case when len(ltrim(rtrim(p.NombreSucursal))) = 0 then 'Desconocido' else ltrim(rtrim(p.NombreSucursal)) end as port_name,\n"
+				+ "	         count(do.codPuerto) as num_do\n"
+				+ "   from do,\n"
+				+ "	    usuariosRid u,\n"
+				+ "	    Sucursal p\n"
+				+ "  where do.codCliente = u.UsuarioID\n"
+				+ "	and u.UsuarioID = ?\n"
+				+ "	and do.codSucursal = p.CodSucursal\n"
+				+ "	and do.codEstadoDO = 'ACT'\n"
+				+ "  group by do.codPuerto, p.NombreSucursal";
 		Object[] args = new Object[1];
 		args[0] = userId;
 		logger.debug("SQL: {}", sql);

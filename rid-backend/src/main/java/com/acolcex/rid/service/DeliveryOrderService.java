@@ -9,7 +9,7 @@ import com.acolcex.rid.model.DeliveryOrder;
 import com.acolcex.rid.model.DeliveryOrderHistory;
 import com.acolcex.rid.model.DeliveryOrderManagement;
 
-public interface DeliveryOrderService extends CrudService<DeliveryOrder, Integer>{
+public interface DeliveryOrderService extends CrudService<DeliveryOrder, String>{
 
 	public Set<DeliveryOrder> findByUserId(String userId) throws ServiceException;
 	

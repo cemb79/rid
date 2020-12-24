@@ -44,7 +44,7 @@ public class DeliveryOrderController {
 	
 	@RequestMapping(value = WebPaths.DELIVERY_ORDER_FIND_BY_NUM_DO, method = {RequestMethod.GET})
     @ResponseBody
-	public ApiResponse findById(@PathVariable Integer numDO) {
+	public ApiResponse findById(@PathVariable String numDO) {
 		logger.info("Finding Delivery Orders by num DO {}", numDO);
 		ApiResponse response = null;
 		try {

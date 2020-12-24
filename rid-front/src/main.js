@@ -88,7 +88,8 @@ Vue.prototype.$message = Message;
 
 locale.use(lang);
 
-axios.defaults.baseURL = 'http://localhost:8085';
+axios.defaults.baseURL = 'http://190.146.14.56:8085'
+//'http://localhost:8085';// ;
 axios.defaults.headers.get['Accepts'] = 'application/json'
 axios.defaults.headers.common['Authorization'] = 'Bearer ' + store.state.tokenId;
 
