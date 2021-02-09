@@ -28,7 +28,7 @@
 	
 	<modules>
 		<module>rid-core</module>
-		<module>rid-front</module>
+		<module>rid-client-front</module>
 		<module>rid-client</module>
 	</modules>
 	
