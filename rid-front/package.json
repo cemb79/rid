@@ -1,5 +1,5 @@
 {
-  "name": "RID",
+  "name": "rid",
   "description": "Acolcex RID",
   "version": "0.1.0",
   "author": "Camilo Mercado <camilo.mercado@gmail.com>",
@@ -24,7 +24,8 @@
     "tailwindcss": "^1.9.6",
     "vue": "^2.6.11",
     "vue-router": "^3.4.6",
-    "vuex": "^3.5.1"
+    "vuex": "^3.5.1",
+    "webpack": "^4.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
