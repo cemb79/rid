@@ -8,18 +8,17 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>rid-backend</artifactId>
+	<artifactId>rid-client</artifactId>
 	<packaging>jar</packaging>
-	<name>RID Backend</name>
+	<name>RID Client Backend</name>
 	<description>Registro Integral Documental</description>
 
-	<properties>
-		<dependency.failOnWarning>false</dependency.failOnWarning>
-		<java.version>8</java.version>
-		<spring.boot.version>2.3.0.RELEASE</spring.boot.version>
-	</properties>
-
 	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>rid-core</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 		<dependency>
 		    <groupId>com.auth0</groupId>
 		    <artifactId>java-jwt</artifactId>
@@ -65,21 +64,8 @@
 		</dependency>
 	</dependencies>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<!-- Import dependency management from Spring Boot -->
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>${spring.boot.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
-
 	<build>
-		<finalName>rid</finalName>
+		<finalName>rid-client</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
