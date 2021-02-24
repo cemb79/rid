@@ -11,7 +11,7 @@ import com.acolcex.rid.model.DeliveryOrderManagement;
 
 public interface DeliveryOrderService extends CrudService<DeliveryOrder, String>{
 
-	public Set<DeliveryOrder> findByUserId(String userId) throws ServiceException;
+	public Page<DeliveryOrder> findByUserId(String userId, Pageable pageable) throws ServiceException;
 	
 	public DeliveryOrderManagement findDOManagementByDOId(String doId) throws ServiceException;
 	

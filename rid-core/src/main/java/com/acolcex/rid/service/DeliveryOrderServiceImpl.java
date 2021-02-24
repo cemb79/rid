@@ -73,10 +73,10 @@ public class DeliveryOrderServiceImpl implements DeliveryOrderService {
 	}
 
 	@Override
-	public Set<DeliveryOrder> findByUserId(String userId) {
-		Set<DeliveryOrder> result = new HashSet<DeliveryOrder>();
-		deliveryRepository.findByUserId(userId).forEach(result::add);
-		return result;
+	public Page<DeliveryOrder> findByUserId(String userId, Pageable pageable) {
+		Page<DeliveryOrder> page = Page.empty();
+		page = deliveryRepository.findByUserId(userId, pageable);
+		return page;
 	}
 
 	@Override

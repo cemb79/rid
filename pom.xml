@@ -30,6 +30,7 @@
 		<module>rid-core</module>
 		<module>rid-client-front</module>
 		<module>rid-client</module>
+		<module>rid-admin</module>
 	</modules>
 	
 	<dependencyManagement>

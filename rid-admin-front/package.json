@@ -1,0 +1,60 @@
+{
+  "name": "rid",
+  "description": "Acolcex RID",
+  "version": "0.1.0",
+  "author": "Camilo Mercado <camilo.mercado@gmail.com>",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "style": "tailwindcss build src/assets/styles/index.css -o public/css/style.css",
+    "tailwind": "postcss src/assets/styles/index.css -o public/css/style.css -w"
+  },
+  "dependencies": {
+    "autoprefixer": "^9.0.1",
+    "axios": "^0.20.0",
+    "chart.js": "^2.9.4",
+    "core-js": "^3.6.5",
+    "element-theme": "^2.0.1",
+    "element-ui": "^2.13.2",
+    "postcss": "^7.0.35",
+    "postcss-cli": "^8.1.0",
+    "primevue": "^2.2.0",
+    "tailwindcss": "^1.9.6",
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.6",
+    "vuex": "^3.5.1",
+    "webpack": "^4.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "babel-eslint": "^10.1.0",
+    "babel-plugin-component": "^1.1.1",
+    "element-theme-chalk": "^2.13.2",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

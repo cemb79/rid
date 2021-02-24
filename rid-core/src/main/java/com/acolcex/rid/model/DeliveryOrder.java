@@ -12,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "DO")
 public class DeliveryOrder {
@@ -30,15 +33,14 @@ public class DeliveryOrder {
 	private Status status;
 	@Column(name = "UsuarioID")
 	private String userId;
-	//@ManyToOne
-	//@JoinColumn(name = "codCliente")
-	@Column(name = "codCliente")
-	private String clientId;
+	@ManyToOne
+	@Fetch(FetchMode.JOIN)
+	@JoinColumn(name = "codCliente")
+	private Customer customer;
 	private String codModalidadDO;
 	private Date fecVenModTemp;
 	private String codTipoDeclaracion;
 	private String noPedido;
-	//private String codMercancia;
 	private String codTransporte;
 	private String docTransporte;
 	@Column(name = "codPuerto")
@@ -102,12 +104,6 @@ public class DeliveryOrder {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
-	public String getClientId() {
-		return clientId;
-	}
-	public void setClientId(String clientId) {
-		this.clientId = clientId;
 	}
 	public String getCodModalidadDO() {
 		return codModalidadDO;
@@ -247,12 +243,12 @@ public class DeliveryOrder {
 	public void setGoods(Goods goods) {
 		this.goods = goods;
 	}
-	/*public Customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}*/
+	}
 	
 	@Override
 	public int hashCode() {

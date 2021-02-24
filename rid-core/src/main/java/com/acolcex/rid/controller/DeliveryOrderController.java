@@ -60,11 +60,12 @@ public class DeliveryOrderController {
 	
 	@RequestMapping(value = WebPaths.DELIVERY_ORDER_FIND_USER, method = {RequestMethod.GET})
     @ResponseBody
-	public ApiResponse findByUserId(@PathVariable String userId) {
+	public ApiResponse findByUserId(@PathVariable String userId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "50") int size) {
 		logger.info("Finding Delivery Orders by userId {}", userId);
+		Pageable paging = PageRequest.of(page, size);
 		ApiResponse response = null;
 		try {
-			Set<DeliveryOrder> dos = deliveryOrderService.findByUserId(userId);
+			Page<DeliveryOrder> dos = deliveryOrderService.findByUserId(userId, paging);
 			response = ApiResponse.successResponse(dos);
 		} catch (ServiceException e) {
 			logger.error(e.getMessage(), e);
