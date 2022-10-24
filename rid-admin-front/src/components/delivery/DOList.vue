@@ -24,7 +24,7 @@
                     width="120">
                 </el-table-column>
                 <el-table-column
-                    prop="customer.nombreRazonSocial"
+                    prop="customer.name"
                     label="Razón Social"
                     width="500">
                 </el-table-column>

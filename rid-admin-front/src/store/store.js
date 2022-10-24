@@ -188,6 +188,15 @@ export default new Vuex.Store({
                     return response
                 })
                 .catch((error) => console.log(error));
+        },
+        fetchCustomers () {
+            let url = Urls.CUSTOMER_FIND_ALL
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.state.tokenId;
+            return axios.get(url)
+                .then((response) => {
+                    return response
+                })
+                .catch((error) => console.log(error));
         }
     }
 });

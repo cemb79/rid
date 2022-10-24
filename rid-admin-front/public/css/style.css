@@ -650,6 +650,12 @@ video {
   background-color: rgba(247, 250, 252, var(--bg-opacity));
 }
 
+.hover\:bg-gray-200:hover {
+  --bg-opacity: 1;
+  background-color: #edf2f7;
+  background-color: rgba(237, 242, 247, var(--bg-opacity));
+}
+
 .hover\:bg-gray-700:hover {
   --bg-opacity: 1;
   background-color: #4a5568;
@@ -670,6 +676,10 @@ video {
 
 .border-transparent {
   border-color: transparent;
+}
+
+.rounded-sm {
+  border-radius: 0.125rem;
 }
 
 .rounded-md {
@@ -736,6 +746,10 @@ video {
   font-weight: 500;
 }
 
+.font-semibold {
+  font-weight: 600;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -758,6 +772,14 @@ video {
 
 .text-base {
   font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
 }
 
 .text-2xl {
@@ -933,10 +955,22 @@ video {
   color: rgba(203, 213, 224, var(--text-opacity));
 }
 
+.text-gray-600 {
+  --text-opacity: 1;
+  color: #718096;
+  color: rgba(113, 128, 150, var(--text-opacity));
+}
+
 .text-gray-700 {
   --text-opacity: 1;
   color: #4a5568;
   color: rgba(74, 85, 104, var(--text-opacity));
+}
+
+.text-primary {
+  --text-opacity: 1;
+  color: #6B7280;
+  color: rgba(107, 114, 128, var(--text-opacity));
 }
 
 .text-secondary {
@@ -1018,6 +1052,10 @@ video {
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
 }
 
+.transition-transform {
+  transition-property: transform;
+}
+
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
@@ -1040,6 +1078,10 @@ video {
 
 .duration-150 {
   transition-duration: 150ms;
+}
+
+.duration-500 {
+  transition-duration: 500ms;
 }
 
 @-webkit-keyframes spin {

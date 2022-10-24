@@ -34,11 +34,13 @@ import {
   Menu,
   MessageBox,
   Message,
+  Option,
   Pagination,
   Row,
   Submenu,
   MenuItem,
   MenuItemGroup,
+  Select,
   Table,
   TableColumn,
   Tabs,
@@ -64,11 +66,13 @@ Vue.use(Input);
 Vue.use(Loading);
 Vue.use(Main);
 Vue.use(Menu);
+Vue.use(Option)
 Vue.use(Pagination);
 Vue.use(Row);
 Vue.use(Submenu);
 Vue.use(MenuItem);
 Vue.use(MenuItemGroup);
+Vue.use(Select);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Tabs);

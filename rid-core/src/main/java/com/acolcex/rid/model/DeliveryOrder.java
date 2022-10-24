@@ -41,7 +41,9 @@ public class DeliveryOrder {
 	private Date fecVenModTemp;
 	private String codTipoDeclaracion;
 	private String noPedido;
-	private String codTransporte;
+	@ManyToOne
+	@JoinColumn(name = "codTransporte")
+	private TransportationType transportationType;
 	private String docTransporte;
 	@Column(name = "codPuerto")
 	private String portId;
@@ -50,7 +52,9 @@ public class DeliveryOrder {
 	private Date manifiestoFecha;
 	private String manifiestoVencimiento;
 	private String codTerminoNegociacion;
-	private String codMoneda;
+	@ManyToOne
+	@JoinColumn(name = "codMoneda")
+	private Currency currency;
 	private BigDecimal valor;
 	private String observaciones;
 	private String descripcionMercancia;
@@ -129,18 +133,6 @@ public class DeliveryOrder {
 	public void setNoPedido(String noPedido) {
 		this.noPedido = noPedido;
 	}
-	/*public String getCodMercancia() {
-		return codMercancia;
-	}
-	public void setCodMercancia(String codMercancia) {
-		this.codMercancia = codMercancia;
-	}*/
-	public String getCodTransporte() {
-		return codTransporte;
-	}
-	public void setCodTransporte(String codTransporte) {
-		this.codTransporte = codTransporte;
-	}
 	public String getDocTransporte() {
 		return docTransporte;
 	}
@@ -182,12 +174,6 @@ public class DeliveryOrder {
 	}
 	public void setCodTerminoNegociacion(String codTerminoNegociacion) {
 		this.codTerminoNegociacion = codTerminoNegociacion;
-	}
-	public String getCodMoneda() {
-		return codMoneda;
-	}
-	public void setCodMoneda(String codMoneda) {
-		this.codMoneda = codMoneda;
 	}
 	public BigDecimal getValor() {
 		return valor;
@@ -248,6 +234,18 @@ public class DeliveryOrder {
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+	public TransportationType getTransportationType() {
+		return transportationType;
+	}
+	public void setTransportationType(TransportationType transportationType) {
+		this.transportationType = transportationType;
+	}
+	public Currency getCurrency() {
+		return currency;
+	}
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
 	}
 	
 	@Override

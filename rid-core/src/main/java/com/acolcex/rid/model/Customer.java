@@ -1,5 +1,6 @@
 package com.acolcex.rid.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,7 +11,8 @@ public class Customer {
 
 	@Id
 	private String codCliente;
-	private String nombreRazonSocial;
+	@Column(name = "nombreRazonSocial")
+	private String name;
 	private boolean estadoCliente;
 	private boolean empRefiere;
 	private String usuarioIDStamp;
@@ -22,11 +24,11 @@ public class Customer {
 	public void setCodCliente(String codCliente) {
 		this.codCliente = codCliente;
 	}
-	public String getNombreRazonSocial() {
-		return nombreRazonSocial;
+	public String getName() {
+		return name;
 	}
-	public void setNombreRazonSocial(String nombreRazonSocial) {
-		this.nombreRazonSocial = nombreRazonSocial;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public boolean isEstadoCliente() {
 		return estadoCliente;
